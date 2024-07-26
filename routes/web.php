@@ -18,13 +18,17 @@ use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Backend\AdminUserController;
-use App\Http\Controllers\Backend\TargetDateController;;
+use App\Http\Controllers\Backend\TargetDateController;
+use App\Http\Controllers\Backend\BannerImgController;
+use App\Http\Controllers\Backend\TimerController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CompareController;
 use App\Http\Controllers\Frontend\HomeBlogController;
+use App\Http\Controllers\Frontend\ShopController;
+
 
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
@@ -35,7 +39,6 @@ use App\Http\Controllers\User\ReviewController;
 
 use App\Http\Controllers\User\AllUserController;
 
-use App\Http\Controllers\Frontend\ShopController;
 use Illuminate\Support\Facades\Artisan;
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +52,7 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Route::group(['prefix'=> 'admin', 'middleware'=>['admin:admin']], function(){
-	Route::get('/login', [AdminController::class, 'loginForm']);
+	Route::get('/login', [AdminController::class, 'loginForm'])->name('admin.login.view');
 	Route::post('/login',[AdminController::class, 'store'])->name('admin.login');
 });
 
@@ -485,6 +488,12 @@ Route::prefix('setting')->group(function(){
 
 Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');
 Route::post('/site/update', [SiteSettingController::class, 'SiteSettingUpdate'])->name('update.sitesetting');
+
+Route::get('/banner/setting', [BannerImgController::class, 'BannerSetting'])->name('banner.setting');
+Route::post('/banner/update', [BannerImgController::class, 'BannerSettingUpdate'])->name('update.bannersetting');
+
+Route::get('/hotDeal/time', [TimerController::class, 'index'])->name('hotdeal.time.setting');
+Route::post('/hotdeal/update', [TimerController::class, 'HotDealTimeUpdate'])->name('hotdeal.time.store');
 
 Route::get('/seo', [SiteSettingController::class, 'SeoSetting'])->name('seo.setting');
 

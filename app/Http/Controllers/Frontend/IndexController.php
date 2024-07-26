@@ -18,10 +18,12 @@ use App\Models\BlogPost;
 use App\Models\SubCategory;
 use App\Models\SubSubCategory;
 use App\Models\TargetDate;
+ use App\Models\Seo;
 
 class IndexController extends Controller
 {
     public function index(){
+        $seo = Seo::find(1);
     	$blogpost = BlogPost::latest()->get();
     	$products = Product::where('status',1)->orderBy('id','DESC')->limit(6)->get();
     	$sliders = Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
@@ -37,8 +39,8 @@ class IndexController extends Controller
     	$skip_category_0 = Category::skip(0)->first();
     	$skip_product_0 = Product::where('status',1)->where('category_id',$skip_category_0->id)->orderBy('id','DESC')->get();
 
-    	$skip_category_1 = Category::skip(1)->first();
-    	$skip_product_1 = Product::where('status',1)->where('category_id',$skip_category_1->id)->orderBy('id','DESC')->get();
+        $skip_category_1 = Category::skip(1)->first();
+        $skip_product_1 = Product::where('status',1)->where('category_id',$skip_category_1->id)->orderBy('id','DESC')->get();
 
     	$skip_brand_1 = Brand::skip(1)->first();
 
@@ -48,7 +50,7 @@ class IndexController extends Controller
     	// return $skip_category->id;
     	// die();
 
-    	return view('frontend.index',compact('categories','sliders','products','featured','hot_deals','special_offer','special_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_1','skip_brand_product_1','blogpost','targetDate'));
+    	return view('frontend.index',compact('categories','seo','sliders','products','featured','hot_deals','special_offer','special_deals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_1','skip_brand_product_1','blogpost','targetDate'));
 
     }
 

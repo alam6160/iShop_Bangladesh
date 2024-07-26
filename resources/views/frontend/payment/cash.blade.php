@@ -27,11 +27,6 @@
     <div class="container">
         <div class="checkout-box ">
             <div class="row">
-
-
-
-
-
                 <div class="col-md-6">
                     <!-- checkout-progress-sidebar -->
                     <div class="checkout-progress-sidebar ">
@@ -47,7 +42,7 @@
                                         <hr>
                                         <li>
                                             @if (Session::has('coupon'))
-                                                <strong>SubTotal: </strong> ${{ $cartTotal }}
+                                                <strong>SubTotal: </strong> ৳{{ $cartTotal }}
                                                 <hr>
 
                                                 <strong>Coupon Name : </strong>
@@ -63,10 +58,10 @@
                                                 ${{ session()->get('coupon')['total_amount'] }}
                                                 <hr>
                                             @else
-                                                <strong>SubTotal: </strong> ${{ $cartTotal }}
+                                                <strong>SubTotal: </strong> ৳{{ $cartTotal }}
                                                 <hr>
 
-                                                <strong>Grand Total : </strong> ${{ $cartTotal }}
+                                                <strong>Grand Total : </strong> ৳{{ $cartTotal }}
                                                 <hr>
                                             @endif
 

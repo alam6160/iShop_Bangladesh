@@ -565,7 +565,7 @@ img[src="assets/images/blank.gif"] {
 
 .special-product .product .image img {width:100%}
 .special-product .product .col {padding-right:0px}
-.special-product .product .btn-primary {background:none; padding:0px; color:#157ed2; text-decoration:underline; margin-top:5px;}
+.special-product .product .btn-primary {background:none; padding:0px; color:#df0000; text-decoration:underline; margin-top:5px;}
 
 .special-product .product:last-child {
   margin-top: 20px;
@@ -1191,7 +1191,7 @@ a {
 /*===================================================================================*/
 /* Header
 /*===================================================================================*/
-header{background:#157ed2}
+header{background:#df0000}
 
 .main-header {
   padding:5px 0px 12px 0px;
@@ -1304,8 +1304,8 @@ header{background:#157ed2}
 
 .top-cart-row .dropdown-cart .lnk-cart {
   padding: 0px;
-      background: #006cb4;
-    border: 1px solid #24609c;
+      background: #fdd922;
+    border: 1px solid #fdd922;
   border-radius: 3px;
   display: inline-block;
   color: #fff;
@@ -1335,8 +1335,8 @@ header{background:#157ed2}
     left: 34px;
     top: 13px;
     width: 18px;
-    background: #fdd922;
-    color: #0f6cb2;
+    background: #ffffff;
+    color: #df0000;
     font-size: 11px;
     text-align: center;
     line-height: 19px;;
@@ -1769,7 +1769,7 @@ header{background:#157ed2}
   font-family: 'Open Sans', sans-serif;
   margin: 0px;
   font-weight:bold;
-  
+
 
 }
 .sidebar .sidebar-module-container .sidebar-widget .sidebar-widget-body .accordion .accordion-group .accordion-heading .accordion-toggle {
@@ -2615,7 +2615,7 @@ age-container #owl-main .owl-next {
 }
 
 .info-boxes-inner {
-  background-color: #0f6cb2;
+  background-color: #df0000;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
 }
 
@@ -2763,7 +2763,7 @@ age-container #owl-main .owl-next {
 }
 .product .cart .action ul li.lnk {
   margin: 10px 0px;
-      background: #0f6cb2;
+      background: #df0000;
     margin: 0px;
     padding: 8px 2px;
 	border-left:1px solid hsla(0,0%,100%,.2);
@@ -2775,7 +2775,7 @@ age-container #owl-main .owl-next {
   padding: 8px 10px;
 }
 .product .cart .action ul li.lnk.wishlist {
-	background:#0f6cb2;
+	background:#df0000;
 	margin:0px;
 	border-radius:0px
 

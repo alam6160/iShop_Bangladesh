@@ -3,16 +3,16 @@
 
 
   <!-- Content Wrapper. Contains page content -->
-  
+
 	  <div class="container-full">
 		<!-- Content Header (Page header) -->
-		 
+
 
 		<!-- Main content -->
 		<section class="content">
 		  <div class="row">
-			   
-		 
+
+
 
 			<div class="col-12">
 
@@ -32,8 +32,8 @@
 								<th>Quantity </th>
 								<th>Discount </th>
 								<th>Status </th>
-								 
-								 
+
+
 							</tr>
 						</thead>
 						<tbody>
@@ -41,10 +41,10 @@
 	 <tr>
 		<td> <img src="{{ asset($item->product_thambnail) }}" style="width: 60px; height: 50px;">  </td>
 		<td>{{ $item->product_name_en }}</td>
-		 <td>{{ $item->selling_price }} $</td>
+		 <td>{{ $item->selling_price }} ৳</td>
 		 <td>{{ $item->product_qty }} Pic</td>
 
-		 <td> 
+		 <td>
 		 	@if($item->discount_price == NULL)
 		 	<span class="badge badge-pill badge-danger">No Discount</span>
 
@@ -71,12 +71,12 @@
 		 </td>
 
 
-		 
-							 
+
+
 	 </tr>
 	  @endforeach
 						</tbody>
-						 
+
 					  </table>
 					</div>
 				</div>
@@ -84,21 +84,21 @@
 			  </div>
 			  <!-- /.box -->
 
-			          
+
 			</div>
 			<!-- /.col -->
 
- 
- 
+
+
 
 
 		  </div>
 		  <!-- /.row -->
 		</section>
 		<!-- /.content -->
-	  
+
 	  </div>
-  
+
 
 
 

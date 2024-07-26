@@ -15,8 +15,6 @@ class BrandController extends Controller
     	return view('backend.brand.brand_view',compact('brands'));
 
     }
-
-
     public function BrandStore(Request $request)
     {
 // dd($request->all());
@@ -25,13 +23,11 @@ class BrandController extends Controller
     	],[
     		'brand_name_en.required' => 'Input Brand English Name',
     	]);
-
     	$image = $request->file('brand_image');
     	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
     	Image::make($image)->resize(300,300)->save('upload/brand/'.$name_gen);
     	$save_url = 'upload/brand/'.$name_gen;
-
-	Brand::insert([
+	    Brand::insert([
 		'brand_name_en' => $request->brand_name_en,
 		'brand_name_ban' => $request->brand_name_ban,
 		'brand_slug_en' => strtolower(str_replace(' ', '-',$request->brand_name_en)),
@@ -56,7 +52,6 @@ class BrandController extends Controller
     	return view('backend.brand.brand_edit',compact('brand'));
 
     }
-
 
     public function BrandUpdate(Request $request){
 
@@ -84,11 +79,8 @@ class BrandController extends Controller
 			'message' => 'Brand Updated Successfully',
 			'alert-type' => 'info'
 		);
-
 		return redirect()->route('all.brand')->with($notification);
-
     	}else{
-
     	Brand::findOrFail($brand_id)->update([
 		'brand_name_en' => $request->brand_name_en,
 		'brand_name_bn' => $request->brand_name_bn,
@@ -108,21 +100,16 @@ class BrandController extends Controller
     	} // end else
     } // end method
 
-
-
     public function BrandDelete($id){
 
     	$brand = Brand::findOrFail($id);
     	$img = $brand->brand_image;
     	unlink($img);
-
     	Brand::findOrFail($id)->delete();
-
     	 $notification = array(
 			'message' => 'Brand Deleted Successfully',
 			'alert-type' => 'info'
 		);
-
 		return redirect()->back()->with($notification);
 
     } // end method

@@ -3,7 +3,7 @@
          $hot_deals = App\Models\Product::where('hot_deals', 1)
              ->where('discount_price', '!=', null)
              ->orderBy('id', 'DESC')
-             ->limit(3)
+             ->limit(5)
              ->get();
      @endphp
 

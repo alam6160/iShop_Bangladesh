@@ -11,7 +11,6 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\Session;
 use Auth;
 use Carbon\Carbon;
-
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderMail;
 
@@ -41,11 +40,9 @@ class CashController extends Controller
      	'payment_type' => 'Cash On Delivery',
      	'payment_method' => 'Cash On Delivery',
 
-     	'currency' =>  'Usd',
+     	'currency' =>  'bdt',
      	'amount' => $total_amount,
-
-
-     	'invoice_no' => 'Ishop'.mt_rand(10000000,99999999),
+     	'invoice_no' => 'Rifa'.mt_rand(10000000,99999999),
      	'order_date' => Carbon::now()->format('d F Y'),
      	'order_month' => Carbon::now()->format('F'),
      	'order_year' => Carbon::now()->format('Y'),
@@ -67,8 +64,6 @@ class CashController extends Controller
      	Mail::to($request->email)->send(new OrderMail($data));
 
      // End Send Email
-
-
      $carts = Cart::content();
      foreach ($carts as $cart) {
      	OrderItem::insert([
@@ -91,7 +86,7 @@ class CashController extends Controller
      Cart::destroy();
 
      $notification = array(
-			'message' => 'Your Order Place Successfully',
+			'message' => 'Your Order Placed Successfully.We will Contract you soon',
 			'alert-type' => 'success'
 		);
 
@@ -120,7 +115,7 @@ class CashController extends Controller
         $order->payment_method = 'Cash On Delivery';
         $order->currency = 'BDT';
         $order->amount =$request->amount;
-        $order->invoice_no = 'Ishop' . mt_rand(10000000, 99999999);
+        $order->invoice_no = 'Rifa' . mt_rand(10000000, 99999999);
         $order->order_date = Carbon::now()->format('d F Y');
         $order->order_month = Carbon::now()->format('F');
         $order->order_year = Carbon::now()->format('Y');

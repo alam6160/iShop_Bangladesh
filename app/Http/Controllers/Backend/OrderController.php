@@ -12,84 +12,84 @@ use Auth;
 use Carbon\Carbon;
 use PDF;
 use DB;
- 
- 
+
+
 
 class OrderController extends Controller
 {
-    
-	// Pending Orders 
+
+	// Pending Orders
 	public function PendingOrders(){
 		$orders = Order::where('status','pending')->orderBy('id','DESC')->get();
 		return view('backend.orders.pending_orders',compact('orders'));
 
-	} // end mehtod 
+	} // end mehtod
 
 
-	// Pending Order Details 
+	// Pending Order Details
 	public function PendingOrdersDetails($order_id){
 
 		$order = Order::with('division','district','state','user')->where('id',$order_id)->first();
     	$orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
     	return view('backend.orders.pending_orders_details',compact('order','orderItem'));
 
-	} // end method 
+	} // end method
 
 
 
-	// Confirmed Orders 
+	// Confirmed Orders
 	public function ConfirmedOrders(){
 		$orders = Order::where('status','confirm')->orderBy('id','DESC')->get();
 		return view('backend.orders.confirmed_orders',compact('orders'));
 
-	} // end mehtod 
+	} // end mehtod
 
 
-	// Processing Orders 
+	// Processing Orders
 	public function ProcessingOrders(){
 		$orders = Order::where('status','processing')->orderBy('id','DESC')->get();
 		return view('backend.orders.processing_orders',compact('orders'));
 
-	} // end mehtod 
+	} // end mehtod
 
 
-		// Picked Orders 
+		// Picked Orders
 	public function PickedOrders(){
 		$orders = Order::where('status','picked')->orderBy('id','DESC')->get();
 		return view('backend.orders.picked_orders',compact('orders'));
 
-	} // end mehtod 
+	} // end mehtod
 
 
 
-			// Shipped Orders 
+			// Shipped Orders
 	public function ShippedOrders(){
 		$orders = Order::where('status','shipped')->orderBy('id','DESC')->get();
 		return view('backend.orders.shipped_orders',compact('orders'));
 
-	} // end mehtod 
+	} // end mehtod
 
 
-			// Delivered Orders 
+			// Delivered Orders
 	public function DeliveredOrders(){
 		$orders = Order::where('status','delivered')->orderBy('id','DESC')->get();
 		return view('backend.orders.delivered_orders',compact('orders'));
 
-	} // end mehtod 
+	} // end mehtod
 
 
-				// Cancel Orders 
+				// Cancel Orders
 	public function CancelOrders(){
 		$orders = Order::where('status','cancel')->orderBy('id','DESC')->get();
 		return view('backend.orders.cancel_orders',compact('orders'));
 
-	} // end mehtod 
+	} // end mehtod
 
 
 
 
 	public function PendingToConfirm($order_id){
-   
+
       Order::findOrFail($order_id)->update(['status' => 'confirm']);
 
       $notification = array(
@@ -102,12 +102,8 @@ class OrderController extends Controller
 
 	} // end method
 
-
-
-
-
 	public function ConfirmToProcessing($order_id){
-   
+
       Order::findOrFail($order_id)->update(['status' => 'processing']);
 
       $notification = array(
@@ -119,11 +115,8 @@ class OrderController extends Controller
 
 
 	} // end method
-
-
-
 		public function ProcessingToPicked($order_id){
-   
+
       Order::findOrFail($order_id)->update(['status' => 'picked']);
 
       $notification = array(
@@ -138,7 +131,7 @@ class OrderController extends Controller
 
 
 	 public function PickedToShipped($order_id){
-   
+
       Order::findOrFail($order_id)->update(['status' => 'shipped']);
 
       $notification = array(
@@ -158,8 +151,8 @@ class OrderController extends Controller
 	 foreach ($product as $item) {
 	 	Product::where('id',$item->product_id)
 	 			->update(['product_qty' => DB::raw('product_qty-'.$item->qty)]);
-	 } 
- 
+	 }
+
       Order::findOrFail($order_id)->update(['status' => 'delivered']);
 
       $notification = array(
@@ -172,21 +165,19 @@ class OrderController extends Controller
 
 	} // end method
 
-
 	public function AdminInvoiceDownload($order_id){
 
 		$order = Order::with('division','district','state','user')->where('id',$order_id)->first();
     	$orderItem = OrderItem::with('product')->where('order_id',$order_id)->orderBy('id','DESC')->get();
-    	 
+
 		$pdf = PDF::loadView('backend.orders.order_invoice',compact('order','orderItem'))->setPaper('a4')->setOptions([
 				'tempDir' => public_path(),
 				'chroot' => public_path(),
 		]);
 		return $pdf->download('invoice.pdf');
 
-	} // end method 
+	} // end method
 
 
 
 }
- 

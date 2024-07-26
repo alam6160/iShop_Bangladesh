@@ -1,7 +1,7 @@
 @extends('frontend.main_master')
 @section('content')
 @section('title')
-    Ishop
+    Rifa Enterpeise
 @endsection
 
 
@@ -10,16 +10,11 @@
     <div class="container">
         <div class="row">
             <!-- ============================================== SIDEBAR ============================================== -->
-            <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-
-
-
-
+            <div class="col-xs-12 col-sm-3 col-md-3 sidebar">
 
                 <!-- === == TOP NAVIGATION == ==== -->
                 @include('frontend.common.vertical_menu')
                 <!-- ===== ==== TOP NAVIGATION : END ==== ===== -->
-
 
                 <!-- === ===== HOT DEALS ======= ===== -->
                 @include('frontend.common.hot_deals')
@@ -31,9 +26,6 @@
                     <h3 class="section-title">Special Offer</h3>
                     <div class="sidebar-widget-body outer-top-xs">
                         <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
-
-
-
                             <div class="item">
                                 <div class="products special-product">
 
@@ -41,7 +33,7 @@
                                         <div class="product">
                                             <div class="product-micro">
                                                 <div class="row product-micro-row">
-                                                    <div class="col col-xs-5">
+                                                    <div class="col col-xs-5 col-md-4 col-sm-2">
                                                         <div class="product-image">
                                                             <div class="image"> <a
                                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
@@ -53,7 +45,7 @@
                                                         <!-- /.product-image -->
                                                     </div>
                                                     <!-- /.col -->
-                                                    <div class="col col-xs-7">
+                                                    <div class="col col-xs-7 col-sm-2">
                                                         <div class="product-info">
                                                             <h3 class="name"><a
                                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
@@ -86,7 +78,7 @@
                     <!-- /.sidebar-widget-body -->
                 </div>
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== SPECIAL OFFER : END ============================================== -->
+                <!-- =========================== SPECIAL OFFER : END ==================================== -->
 
 
 
@@ -112,7 +104,7 @@
                                         <div class="product">
                                             <div class="product-micro">
                                                 <div class="row product-micro-row">
-                                                    <div class="col col-xs-5">
+                                                    <div class="col col-xs-5 col-md-4 col-sm-2">
                                                         <div class="product-image">
                                                             <div class="image"> <a
                                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
@@ -124,7 +116,7 @@
                                                         <!-- /.product-image -->
                                                     </div>
                                                     <!-- /.col -->
-                                                    <div class="col col-xs-7">
+                                                    <div class="col col-xs-7 col-md-4 col-sm-2">
                                                         <div class="product-info">
                                                             <h3 class="name"><a
                                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
@@ -149,14 +141,8 @@
 
                                         </div>
                                     @endforeach <!-- // end special deals foreach -->
-
-
-
-
                                 </div>
                             </div>
-
-
 
                         </div>
                     </div>
@@ -210,7 +196,8 @@
 
                                         <div class="big-text fadeInDown-1">{{ $slider->title }} </div>
                                         <div class="excerpt fadeInDown-2 hidden-xs">
-                                            <span>{{ $slider->description }}</span> </div>
+                                            <span>{{ $slider->description }}</span>
+                                        </div>
                                         <div class="button-holder fadeInDown-3"> <a href="{{ url('/shop') }}"
                                                 class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop
                                                 Now</a> </div>
@@ -238,8 +225,8 @@
 
 
 
-                <!-- ============================================== INFO BOXES ============================================== -->
-                <div class="info-boxes wow fadeInUp">
+                <!-- ======================= INFO BOXES ============= -->
+                {{-- <div class="info-boxes wow fadeInUp">
                     <div class="info-boxes-inner">
                         <div class="row">
                             <div class="col-md-6 col-sm-4 col-lg-4">
@@ -282,7 +269,7 @@
                     </div>
                     <!-- /.info-boxes-inner -->
 
-                </div>
+                </div> --}}
                 <!-- /.info-boxes -->
                 <!-- ============================================== INFO BOXES : END ============================================== -->
 
@@ -305,16 +292,13 @@
                         </ul>
                         <!-- /.nav-tabs -->
                     </div>
-                    <div class="tab-content outer-top-xs">
-
-
-
+                    <div class="tab-content outer-top-xs ">
                         <div class="tab-pane in active" id="all">
                             <div class="product-slider">
                                 <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
 
                                     @foreach ($products as $product)
-                                        <div class="item item-carousel">
+                                        <div class="item item-carousel ">
                                             <div class="products">
                                                 <div class="product">
                                                     <div class="product-image">
@@ -335,7 +319,8 @@
                                                                 <div class="tag new"><span>new</span></div>
                                                             @else
                                                                 <div class="tag hot">
-                                                                    <span>{{ round($discount) }}%</span></div>
+                                                                    <span>{{ round($discount) }}%</span>
+                                                                </div>
                                                             @endif
                                                         </div>
                                                     </div>
@@ -454,7 +439,8 @@
                                                                     <div class="tag new"><span>new</span></div>
                                                                 @else
                                                                     <div class="tag hot">
-                                                                        <span>{{ round($discount) }}%</span></div>
+                                                                        <span>{{ round($discount) }}%</span>
+                                                                    </div>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -549,11 +535,6 @@
                             </div>
                             <!-- /.tab-pane -->
                         @endforeach <!-- end categor foreach -->
-
-
-
-
-
                     </div>
                     <!-- /.tab-content -->
                 </div>
@@ -665,16 +646,10 @@
                                                         <button class="btn btn-primary cart-btn" type="button">Add to
                                                             cart</button>
                                                     </li>
-
-
-
                                                     <button class="btn btn-primary icon" type="button"
                                                         title="Wishlist" id="{{ $product->id }}"
                                                         onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
                                                     </button>
-
-
-
                                                     <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
                                                             id="{{ $product->id }}"
                                                             onclick="addToCompare(this.id)"title="Compare"> <i
@@ -900,8 +875,6 @@
                                             <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
-
-
                                                         <button class="btn btn-primary icon" type="button"
                                                             title="Add Cart" data-toggle="modal"
                                                             data-target="#exampleModal" id="{{ $product->id }}"
@@ -911,9 +884,6 @@
                                                         <button class="btn btn-primary cart-btn" type="button">Add to
                                                             cart</button>
                                                     </li>
-
-
-
                                                     <button class="btn btn-primary icon" type="button"
                                                         title="Wishlist" id="{{ $product->id }}"
                                                         onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
@@ -1373,10 +1343,10 @@
           <!-- /.sidebar-widget-body -->
         </div> --}}
                 <!-- /.sidebar-widget -->
-                <!-- ============================================== BEST SELLER : END ============================================== -->
+                <!-- ==================== BEST SELLER : END =============================== -->
 
-                <!-- ============================================== BLOG SLIDER ============================================== -->
-                <section class="section latest-blog outer-bottom-vs wow fadeInUp">
+                <!-- ============================= BLOG SLIDER ================================ -->
+                {{-- <section class="section latest-blog outer-bottom-vs wow fadeInUp">
                     <h3 class="section-title">latest form blog</h3>
                     <div class="blog-slider-container outer-top-xs">
                         <div class="owl-carousel blog-slider custom-carousel">
@@ -1430,11 +1400,11 @@
                         <!-- /.owl-carousel -->
                     </div>
                     <!-- /.blog-slider-container -->
-                </section>
+                </section> --}}
                 <!-- /.section -->
-                <!-- ============================================== BLOG SLIDER : END ============================================== -->
+                <!-- =================================== BLOG SLIDER : END ============================================== -->
 
-                <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+                <!-- ========================= FEATURED PRODUCTS ============================================== -->
                 {{-- <section class="section wow fadeInUp new-arriavls">
           <h3 class="section-title">New Arrivals</h3>
           <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">

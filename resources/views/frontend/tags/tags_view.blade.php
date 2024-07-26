@@ -168,16 +168,10 @@ Tag Wise Product
              <!-- == ====== END PRODUCT TAGS ==== ======= -->
 
 
-
-
-
-
           <!----------- Testimonials------------->
 
             {{-- @include('frontend.common.testimonials') --}}
             <!-- == ========== Testimonials: END ======== ========= -->
-
-
 
             {{-- <div class="home-banner"> <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image"> </div> --}}
           </div>

@@ -2,18 +2,18 @@
 @section('content')
 
 @section('title')
-Order Traking Page 
+Order Traking Page
 @endsection
 
 <style type="text/css">
-	
+
 	body {
      background-color: #eeeeee;
      font-family: 'Open Sans', serif
  }
 
  .container {
-     
+
  }
 
  .card {
@@ -66,7 +66,7 @@ Order Traking Page
  }
 
  .track .step.active:before {
-     background: #157ed2
+     background: #df0000
  }
 
  .track .step::before {
@@ -79,7 +79,7 @@ Order Traking Page
  }
 
  .track .step.active .icon {
-     background: #157ed2;
+     background: #df0000;
      color: #fff
  }
 
@@ -137,7 +137,7 @@ Order Traking Page
  .itemside .title {
      display: block;
      margin-bottom: 5px;
-     color: #157ed2
+     color: #df0000
  }
 
  p {
@@ -147,15 +147,15 @@ Order Traking Page
 
  .btn-warning {
      color: #ffffff;
-     background-color: #157ed2;
-     border-color: #157ed2;
+     background-color: #df0000;
+     border-color: #df0000;
      border-radius: 1px
  }
 
  .btn-warning:hover {
      color: #ffffff;
-     background-color: #157ed2;
-     border-color: #157ed2;
+     background-color: #df0000;
+     border-color: #df0000;
      border-radius: 1px
  }
 
@@ -167,7 +167,7 @@ Order Traking Page
     <article class="card">
         <header class="card-header"> <b> My Orders / Tracking </b> </header>
         <div class="card-body">
-           
+
      <div class="row" style="margin-left: 30px; margin-top: 20px;">
      	<div class="col-md-2">
      		<b> Invoice Number </b><br>
@@ -196,10 +196,10 @@ Order Traking Page
 
      	<div class="col-md-2">
      		<b> Total Amount  </b><br>
-     		$ {{ $track->amount  }}
+     		৳ {{ $track->amount  }}
      	</div> <!-- // end col md 2 -->
-     	
-     </div> <!-- // end row   -->     
+
+     </div> <!-- // end row   -->
 
 
 
@@ -300,21 +300,21 @@ Order Traking Page
 
  <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Delivered </span> </div>
 
-     @endif  
+     @endif
 
 
- 
+
 
             </div> <!-- // end track  -->
 
 
             <hr><br><br>
-            
-            
+
+
         </div>
     </article>
 </div>
- 
+
 
 
 
