@@ -10,6 +10,78 @@
         float: right;
     }
 }
+
+.search-container {
+    position: relative;
+    max-width: 700px;
+    margin-top:10px;
+}
+
+#product-search {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.search-button {
+    position: absolute;
+    right: 0px;
+    top: 1px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+
+    font-size: 30px;
+}
+
+.search-results-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.search-results-dropdown .product-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.search-results-dropdown .product-item:hover {
+    background-color: #f9f9f9;
+}
+
+.search-results-dropdown .product-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.search-results-dropdown .product-item h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.search-results-dropdown .product-item p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+
     </style>
 
     <!-- ============================================== TOP MENU ============================================== -->
@@ -112,26 +184,11 @@
                 <div class="col-xs-12 col-sm-8 col-md-6 top-search-holder">
                     <!-- /.contact-row -->
                     <!-- ============================================================= SEARCH AREA ============================================================= -->
-                    <div class="search-area">
+                    {{-- <div class="search-area">
                         <form method="post" action="{{ route('product.search') }}">
                             @csrf
                             <div class="control-group">
-                                {{-- <ul class="categories-filter animate-dropdown">
-                                    <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown"
-                                            href="category.html">Categories <b class="caret"></b></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li class="menu-header">Computer</li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Clothing</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Electronics</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Shoes</a></li>
-                                            <li role="presentation"><a role="menuitem" tabindex="-1"
-                                                    href="category.html">- Watches</a></li>
-                                        </ul>
-                                    </li>
-                                </ul> --}}
+
                                 <input class="search-field" onfocus="search_result_show()" onblur="search_result_hide()"
                                     id="search" name="search" placeholder="Search here..." />
 
@@ -139,7 +196,16 @@
                             </div>
                         </form>
                         <div id="searchProducts"></div>
+                    </div> --}}
+                    <div class="search-container">
+                        <input type="text" id="product-search" placeholder="Search for products..." autocomplete="off">
+                        <button class="search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div id="search-results" class="search-results-dropdown"></div>
                     </div>
+
+
                     <!-- /.search-area -->
                     <!-- ================= SEARCH AREA : END ================== -->
                 </div>
@@ -366,31 +432,54 @@
 
 </header>
 
-
-<style>
-    .search-area {
-        position: relative;
-    }
-
-    #searchProducts {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #ffffff;
-        z-index: 999;
-        border-radius: 8px;
-        margin-top: 5px;
-    }
-</style>
-
-
 <script>
-    function search_result_hide() {
-        $("#searchProducts").slideUp();
-    }
 
-    function search_result_show() {
-        $("#searchProducts").slideDown();
-    }
+$(document).ready(function() {
+    $('#product-search').on('keyup', function() {
+        let query = $(this).val();
+
+        if (query.length > 0) {
+            $.ajax({
+                url: '{{ route("product.search.ajax") }}',
+                method: 'GET',
+                data: { query: query },
+                success: function(response) {
+                    $('#search-results').empty();
+
+                    if (response.length > 0) {
+                        response.forEach(product => {
+                            let productElement = `
+                                <div class="product-item">
+                                    <div class="image">
+                                        <a href="{{ url('product/details/${product.id}/${product.product_slug_en}') }}">
+                                            <img src="{{ asset('${product.product_thambnail}') }}" alt="${product.product_name_en}" width="50" height="50">
+                                        </a>
+                                    </div>
+                                    <a  href="{{ url('product/details/${product.id}/${product.product_slug_en}') }}">
+                                    <div class="product-info">
+                                        <h4>${product.product_name_en}</h4>
+                                        <p>${product.short_descp_en}</p>
+                                    </div>
+                                    </a>
+                                </div>`;
+                            $('#search-results').append(productElement);
+                        });
+                    } else {
+                        $('#search-results').append('<p>No products found</p>');
+                    }
+                }
+            });
+        } else {
+            $('#search-results').empty();
+        }
+    });
+});
+
+    // function search_result_hide() {
+    //     $("#searchProducts").slideUp();
+    // }
+
+    // function search_result_show() {
+    //     $("#searchProducts").slideDown();
+    // }
 </script>

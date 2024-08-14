@@ -47,7 +47,7 @@ class SiteSettingController extends Controller
 
 	    $notification = array(
 			'message' => 'Setting Updated with Image Successfully',
-			'alert-type' => 'info'
+			'alert-type' => 'success'
 		);
 
 		return redirect()->back()->with($notification);

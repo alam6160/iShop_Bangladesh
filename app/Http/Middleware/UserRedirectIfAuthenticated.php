@@ -31,13 +31,13 @@ class UserRedirectIfAuthenticated
            User::where('id',Auth::user()->id)->update(['last_seen' => Carbon::now()]);
         }
 
-        
+
         if (Auth::check() && Auth::user()) {
            return $next($request);
         }else {
             return redirect()->route('login');
-        }      
-  
+        }
+
 
     }
 }

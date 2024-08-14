@@ -16,7 +16,7 @@
                             <div class="form-group">
                                 <h5>Start Time <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="datetime-local" name="start_time" class="form-control">
+                                    <input type="datetime-local" name="start_time" class="form-control"value="{{ old('start_time', $hotDeals->start_time ? \Carbon\Carbon::parse($hotDeals->start_time)->format('Y-m-d\TH:i') : '') }}">
                                     @error('start_time')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -25,7 +25,7 @@
                             <div class="form-group">
                                 <h5>End Time <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="datetime-local" name="end_time" class="form-control">
+                                    <input type="datetime-local" name="end_time" class="form-control"value="{{ old('end_time', $hotDeals->end_time ? \Carbon\Carbon::parse($hotDeals->end_time)->format('Y-m-d\TH:i') : '') }}">
                                     @error('end_time')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror

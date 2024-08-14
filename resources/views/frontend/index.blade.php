@@ -25,7 +25,7 @@
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">Special Offer</h3>
                     <div class="sidebar-widget-body outer-top-xs">
-                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs" data-item="6">
                             <div class="item">
                                 <div class="products special-product">
 
@@ -94,7 +94,7 @@
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">Special Deals</h3>
                     <div class="sidebar-widget-body outer-top-xs">
-                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs" data-item="6">
 
 
                             <div class="item">
@@ -295,7 +295,7 @@
                     <div class="tab-content outer-top-xs ">
                         <div class="tab-pane in active" id="all">
                             <div class="product-slider">
-                                <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
+                                <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="6">
 
                                     @foreach ($products as $product)
                                         <div class="item item-carousel ">
@@ -408,7 +408,7 @@
                             <div class="tab-pane" id="category{{ $category->id }}">
                                 <div class="product-slider">
                                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme"
-                                        data-item="4">
+                                        data-item="6">
 
                                         @php
                                             $catwiseProduct = App\Models\Product::where('category_id', $category->id)
@@ -575,7 +575,7 @@
 
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">Featured products</h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs" data-item="6">
 
 
                         @foreach ($featured as $product)
@@ -690,7 +690,7 @@
                             {{ $skip_category_0->category_name_en }}
                         @endif
                     </h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs" data-item="6">
 
 
                         @foreach ($skip_product_0 as $product)
@@ -814,7 +814,7 @@
                             {{ $skip_category_1->category_name_en }}
                         @endif
                     </h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs"data-item="6">
 
 
                         @foreach ($skip_product_1 as $product)
@@ -975,7 +975,7 @@
                             {{ $skip_brand_1->brand_name_en }}
                         @endif
                     </h3>
-                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs"data-item="6">
 
 
                         @foreach ($skip_brand_product_1 as $product)
