@@ -58,12 +58,12 @@
         <tr>
             <td valign="top">
                 <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-                <h2 style="color: green; font-size: 26px;"><strong>Rifa Enterprise</strong></h2>
+                <h2 style="color: green; font-size: 26px;"><strong>Rifa Mart</strong></h2>
             </td>
             <td align="right">
                 <pre class="font">
-               <h2>Rifa Enterprise</h2>
-               Email:support@rifaenterprise.com <br>
+               <h2>Rifa Mart</h2>
+               Email:support@rifamart.com <br>
                Mob: 1245454545 <br>
                Dhaka 1207,Dhanmondi:#4 <br>
 

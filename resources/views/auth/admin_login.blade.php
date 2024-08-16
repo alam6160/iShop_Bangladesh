@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('backend/images/favicon.ico') }}">
-    <title>Rifa Enterprise Admin - Log In </title>
+    <title>Rifa Mart Admin - Log In </title>
 
     <link rel="stylesheet" href="{{ asset('backend/css/vendors_css.css') }}">
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
@@ -25,7 +25,7 @@
                 <div class="row justify-content-center no-gutters">
                     <div class="col-lg-4 col-md-5 col-12">
                         <div class="content-top-agile p-10">
-                            <h2 class="text-white">Rifa Enterprise</h2>
+                            <h2 class="text-white">Rifa Mart</h2>
                             <h3 class="text-white">Admin Login</h3>
                         </div>
                         <div class="p-30 rounded30 box-shadowed b-2 b-dashed">

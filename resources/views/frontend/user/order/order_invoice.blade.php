@@ -58,12 +58,12 @@
         <tr>
             <td valign="top">
                 <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-                <h2 style="color: green; font-size: 26px;"><strong>Rifa Enterprise</strong></h2>
+                <h2 style="color: green; font-size: 26px;"><strong>Rifa Mart</strong></h2>
             </td>
             <td align="right">
                 <pre class="font">
-               Rifa Enterprise Head Office
-               Email:support@rifaenterprise.com <br>
+               Rifa Mart Head Office
+               Email:support@rifamart.com <br>
                Mob: 1245454545 <br>
                Dhaka 1207,Dhanmondi:#4 <br>
 

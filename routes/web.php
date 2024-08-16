@@ -527,7 +527,7 @@ Route::get('/blog/category/post/{category_id}', [HomeBlogController::class, 'Hom
 
 Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('review.store');
 
-Route::get('/checkout/page/{id}', [CartController::class, 'CheckoutCreateForDirectBuy'])->name('checkout.page');
+Route::get('/checkout/page/{id}', [CartController::class, 'CheckoutCreateWithoutCart'])->name('checkout.page');
 
 
 /// Product Search Route

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Wishlist;
 use Carbon\Carbon;
 
@@ -207,12 +207,56 @@ class CartController extends Controller
     } // end method
 
 
-    public function CheckoutCreateForDirectBuy($id){
-        $product = Product::findOrFail($id);
-        $divisions = ShipDivision::orderBy('division_name','ASC')->get();
-        return view('frontend.checkout.checkout_page',compact('divisions','product'));
+//     public function CheckoutCreateForDirectBuy($id){
+//         $product = Product::findOrFail($id);
+//         $divisions = ShipDivision::orderBy('division_name','ASC')->get();
+//         return view('frontend.checkout.checkout_page',compact('divisions','product'));
 
+// }
+
+public function CheckoutCreateWithoutCart($productId = null)
+{
+    // if (Auth::check()) {
+        // Check if the request is for direct purchase
+        if ($productId) {
+           $product = Product::findOrFail($productId);
+
+          $carts = collect([
+                [
+                    'id' => $product->id,
+                    'name' => $product->product_name_en,
+                    'qty' => 1,
+                    'price' => $product->discount_price,
+                ]
+            ]);
+
+            $cartQty = 1;
+           $cartTotal = $product->discount_price;
+
+        } elseif (Cart::total() > 0) { // Regular cart checkout
+            $carts = Cart::content();
+            $cartQty = Cart::count();
+            $cartTotal = Cart::total();
+        } else {
+            $notification = [
+                'message' => 'Shopping At least One Product',
+                'alert-type' => 'error'
+            ];
+            return redirect()->to('/')->with($notification);
+        }
+
+        $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+        return view('frontend.checkout.checkout_page', compact('carts', 'cartQty', 'cartTotal', 'divisions','product'));
+
+    // } else {
+        $notification = [
+            'message' => 'You Need to Login First',
+            'alert-type' => 'error'
+        ];
+        return redirect()->route('login')->with($notification);
+    // }
 }
+
 
 
 

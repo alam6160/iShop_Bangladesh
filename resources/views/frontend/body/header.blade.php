@@ -1,87 +1,86 @@
 <header class="header-style-1">
     <style>
         .cart-align-right {
-    text-align: left; /* Default alignment */
-}
+            text-align: left;
+            /* Default alignment */
+        }
 
-@media (max-width: 768px) {
-    .cart-align-right {
-        text-align: right;
-        float: right;
-    }
-}
+        @media (max-width: 768px) {
+            .cart-align-right {
+                text-align: right;
+                float: right;
+            }
+        }
 
-.search-container {
-    position: relative;
-    max-width: 700px;
-    margin-top:10px;
-}
+        .search-container {
+            position: relative;
+            max-width: 700px;
+            margin-top: 10px;
+        }
 
-#product-search {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
+        #product-search {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
 
-.search-button {
-    position: absolute;
-    right: 0px;
-    top: 1px;
-    background: none;
-    border: none;
-    cursor: pointer;
-
-
-    font-size: 30px;
-}
-
-.search-results-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    max-height: 300px;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
-.search-results-dropdown .product-item {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-.search-results-dropdown .product-item:hover {
-    background-color: #f9f9f9;
-}
-
-.search-results-dropdown .product-item img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    margin-right: 10px;
-}
-
-.search-results-dropdown .product-item h4 {
-    margin: 0;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.search-results-dropdown .product-item p {
-    margin: 0;
-    font-size: 14px;
-    color: #666;
-}
+        .search-button {
+            position: absolute;
+            right: 0px;
+            top: 1px;
+            background: none;
+            border: none;
+            cursor: pointer;
 
 
+            font-size: 30px;
+        }
+
+        .search-results-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .search-results-dropdown .product-item {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-results-dropdown .product-item:hover {
+            background-color: #f9f9f9;
+        }
+
+        .search-results-dropdown .product-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .search-results-dropdown .product-item h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .search-results-dropdown .product-item p {
+            margin: 0;
+            font-size: 14px;
+            color: #666;
+        }
     </style>
 
     <!-- ============================================== TOP MENU ============================================== -->
@@ -113,13 +112,11 @@
 
                         <li>
 
-
                             @auth
                                 <a href="{{ route('dashboard') }}"><i class="icon fa fa-user"></i>User Profile</a>
                             @else
                                 <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a>
                             @endauth
-
 
                         </li>
                     </ul>
@@ -198,7 +195,8 @@
                         <div id="searchProducts"></div>
                     </div> --}}
                     <div class="search-container">
-                        <input type="text" id="product-search" placeholder="Search for products..." autocomplete="off">
+                        <input type="text" id="product-search" placeholder="Search for products..."
+                            autocomplete="off">
                         <button class="search-button">
                             <i class="fas fa-search"></i>
                         </button>
@@ -267,7 +265,7 @@
                         <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span
                             class="icon-bar"></span> <span class="icon-bar"></span> </button>
                 </div>
-                <div class="nav-bg-class" >
+                <div class="nav-bg-class">
                     <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
                         <div class="nav-outer">
                             <ul class="nav navbar-nav">
@@ -357,8 +355,7 @@
 
                                                         <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
                                                             <img class="img-responsive"
-                                                                src="{{ asset('frontend/assets/images/banners/top-menu-banner.jpg') }}"
-                                                                alt="">
+                                                                src="{{ asset($banner->nav_img) }}" alt="">
                                                         </div>
                                                         <!-- /.yamm-content -->
                                                     </div>
@@ -417,38 +414,32 @@
                             <input type="text" name="code" required="" class="form-control"
                                 placeholder="Your Order Invoice Number">
                         </div>
-
                         <button class="btn btn-danger" type="submit" style="margin-left: 17px;"> Track Now </button>
-
                     </form>
-
-
                 </div>
-
             </div>
         </div>
     </div>
-
-
 </header>
 
 <script>
+    $(document).ready(function() {
+        $('#product-search').on('keyup', function() {
+            let query = $(this).val();
 
-$(document).ready(function() {
-    $('#product-search').on('keyup', function() {
-        let query = $(this).val();
+            if (query.length > 0) {
+                $.ajax({
+                    url: '{{ route('product.search.ajax') }}',
+                    method: 'GET',
+                    data: {
+                        query: query
+                    },
+                    success: function(response) {
+                        $('#search-results').empty();
 
-        if (query.length > 0) {
-            $.ajax({
-                url: '{{ route("product.search.ajax") }}',
-                method: 'GET',
-                data: { query: query },
-                success: function(response) {
-                    $('#search-results').empty();
-
-                    if (response.length > 0) {
-                        response.forEach(product => {
-                            let productElement = `
+                        if (response.length > 0) {
+                            response.forEach(product => {
+                                let productElement = `
                                 <div class="product-item">
                                     <div class="image">
                                         <a href="{{ url('product/details/${product.id}/${product.product_slug_en}') }}">
@@ -462,18 +453,18 @@ $(document).ready(function() {
                                     </div>
                                     </a>
                                 </div>`;
-                            $('#search-results').append(productElement);
-                        });
-                    } else {
-                        $('#search-results').append('<p>No products found</p>');
+                                $('#search-results').append(productElement);
+                            });
+                        } else {
+                            $('#search-results').append('<p>No products found</p>');
+                        }
                     }
-                }
-            });
-        } else {
-            $('#search-results').empty();
-        }
+                });
+            } else {
+                $('#search-results').empty();
+            }
+        });
     });
-});
 
     // function search_result_hide() {
     //     $("#searchProducts").slideUp();

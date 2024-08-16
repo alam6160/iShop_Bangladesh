@@ -190,7 +190,8 @@ Sub - Subcategory Product
 
 
 
-            <div class="home-banner"> <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image"> </div>
+            {{-- <div class="home-banner"> <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image">
+            </div> --}}
           </div>
           <!-- /.sidebar-filter -->
         </div>

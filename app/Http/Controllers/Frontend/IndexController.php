@@ -19,6 +19,8 @@ use App\Models\SubSubCategory;
 use App\Models\TargetDate;
 use App\Models\Seo;
 use App\Models\Time;
+use App\Models\Banner;
+
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
@@ -103,6 +105,7 @@ class IndexController extends Controller
         // Fetch target date and timer
         $data['targetDate'] = TargetDate::latest()->first();
         $data['timer'] = Time::first();
+        $data['banner'] = Banner::first();
 
         // Return view with data array
         return view('frontend.index', $data);
@@ -120,9 +123,6 @@ class IndexController extends Controller
     	$user = User::find($id);
     	return view('frontend.profile.user_profile',compact('user'));
     }
-
-
-
     public function UserProfileStore(Request $request){
         $data = User::find(Auth::user()->id);
 		$data->name = $request->name;
@@ -204,8 +204,9 @@ class IndexController extends Controller
         ->avg('rating');
         $hot_deals = Product::where('hot_deals',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(3)->get();
         $timer = Time::first();
+        $banner = Banner::first();
 
-	 	return view('frontend.product.product_details',compact('product','multiImag','product_color_en','product_color_hin','product_size_en','product_size_hin','relatedProduct','avarage','reviewcount','hot_deals','timer'));
+	 	return view('frontend.product.product_details',compact('product','multiImag','product_color_en','product_color_hin','product_size_en','product_size_hin','relatedProduct','avarage','reviewcount','hot_deals','timer','banner'));
 
 	}
 
@@ -259,7 +260,8 @@ class IndexController extends Controller
 	public function TagWiseProduct($tag){
 		$products = Product::where('status',1)->where('product_tags_en',$tag)->where('product_tags_hin',$tag)->orderBy('id','DESC')->paginate(3);
 		$categories = Category::orderBy('category_name_en','ASC')->get();
-		return view('frontend.tags.tags_view',compact('products','categories'));
+        $banner = Banner::first();
+		return view('frontend.tags.tags_view',compact('products','categories','banner'));
 
 	}
 
@@ -270,7 +272,7 @@ class IndexController extends Controller
 		$categories = Category::orderBy('category_name_en','ASC')->get();
 
 		$breadsubcat = SubCategory::with(['category'])->where('id',$subcat_id)->get();
-
+        $banner = Banner::first();
 
 		///  Load More Product with Ajax
 		if ($request->ajax()) {
@@ -282,7 +284,7 @@ class IndexController extends Controller
 		}
 		///  End Load More Product with Ajax
 
-		return view('frontend.product.subcategory_view',compact('products','categories','breadsubcat'));
+		return view('frontend.product.subcategory_view',compact('products','categories','breadsubcat','banner'));
 
 	}
 
@@ -290,10 +292,9 @@ class IndexController extends Controller
 	public function SubSubCatWiseProduct($subsubcat_id,$slug){
 		$products = Product::where('status',1)->where('subsubcategory_id',$subsubcat_id)->orderBy('id','DESC')->paginate(6);
 		$categories = Category::orderBy('category_name_en','ASC')->get();
-
 		$breadsubsubcat = SubSubCategory::with(['category','subcategory'])->where('id',$subsubcat_id)->get();
-
-		return view('frontend.product.sub_subcategory_view',compact('products','categories','breadsubsubcat'));
+        $banner = Banner::first();
+		return view('frontend.product.sub_subcategory_view',compact('products','categories','breadsubsubcat','banner'));
 
 	}
 

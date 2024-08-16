@@ -545,9 +545,9 @@
                     <div class="row">
                         <div class="col-md-7 col-sm-7">
                             <div class="wide-banner cnt-strip">
-                                <div class="image"> <img class="img-responsive"
-                                        src="{{ asset('frontend/assets/images/banners/home-banner1.jpg') }}"
-                                        alt=""> </div>
+                                <div class="image">
+                                    <img class="img-responsive" src="{{ asset($banner->first_img) }}" alt="Banner Image">
+                                 </div>
                             </div>
                             <!-- /.wide-banner -->
                         </div>
@@ -555,7 +555,7 @@
                         <div class="col-md-5 col-sm-5">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
-                                        src="{{ asset('frontend/assets/images/banners/home-banner2.jpg') }}"
+                                        src="{{ asset($banner->second_img) }}"
                                         alt=""> </div>
                             </div>
                             <!-- /.wide-banner -->
@@ -936,7 +936,7 @@
                         <div class="col-md-12">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
-                                        src="{{ asset('frontend/assets/images/banners/home-banner.jpg') }}"
+                                         src="{{ asset($banner->third_img) }}"
                                         alt=""> </div>
                                 <div class="strip strip-text">
                                     <div class="strip-inner">

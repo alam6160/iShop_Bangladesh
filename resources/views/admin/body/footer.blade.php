@@ -9,5 +9,5 @@
 		  </li>
 		</ul>
     </div>
-	  &copy; 2024 <a href="#">Rifa Enterprise</a>. All Rights Reserved.
+	  &copy; 2024 <a href="#">Rifa Mart</a>. All Rights Reserved.
   </footer>

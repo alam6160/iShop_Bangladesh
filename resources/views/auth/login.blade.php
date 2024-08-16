@@ -1,211 +1,226 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Login Form</title>
-      <link rel="stylesheet" href="style.css">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
-   <style>
-    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-html,body{
-  display: grid;
-  height: 100%;
-  width: 100%;
-  place-items: center;
-  background: -webkit-linear-gradient(left, #a445b2, #fa4299);
-}
-::selection{
-  background: #fa4299;
-  color: #fff;
-}
-.wrapper{
-  overflow: hidden;
-  max-width: 390px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
-}
-.wrapper .title{
-  font-size: 35px;
-  font-weight: 600;
-  text-align: center;
-}
-.form-container .form-inner{
-  width: 100%;
-}
-.form-container .form-inner form{
-  width: 100%;
-}
-.form-inner form .field{
-  height: 50px;
-  width: 100%;
-  margin-top: 20px;
-}
-.form-inner form .field input{
-  height: 100%;
-  width: 100%;
-  outline: none;
-  padding-left: 15px;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  border-bottom-width: 2px;
-  font-size: 17px;
-  transition: all 0.3s ease;
-}
-.form-inner form .field input:focus{
-  border-color: #fc83bb;
-}
-.form-inner form .field input::placeholder{
-  color: #999;
-  transition: all 0.3s ease;
-}
-form .field input:focus::placeholder{
-  color: #b3b3b3;
-}
-.form-inner form .pass-link{
-  margin-top: 5px;
-}
-.form-inner form .pass-link a{
-  color: #fa4299;
-  text-decoration: none;
-}
-.form-inner form .pass-link a:hover{
-  text-decoration: underline;
-}
-form .btn{
-  height: 50px;
-  width: 100%;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-}
-form .btn .btn-layer{
-  height: 100%;
-  width: 300%;
-  position: absolute;
-  left: -100%;
-  background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
-  border-radius: 5px;
-  transition: all 0.4s ease;
-}
-form .btn:hover .btn-layer{
-  left: 0;
-}
-form .btn input[type="submit"]{
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  position: relative;
-  background: none;
-  border: none;
-  color: #fff;
-  padding-left: 0;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: 500;
-  cursor: pointer;
-
-  .test{
-  height: 100%;
-  width: 300%;
-  position: absolute;
-  left: -100%;
-  background: -webkit-linear-gradient(right, #a445b2, #fa4299, #a445b2, #fa4299);
-  border-radius: 5px;
-  transition: all 0.4s ease;
-}
+@extends('frontend.main_master')
+@section('content')
+<style>
+   .login-page {
+    height: 98vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 0;
+    margin-bottom: 40px;
 }
 
-   </style>
-   <body>
-      <div class="wrapper">
-         <div class="title test">
-            <div class="btn-layer"></div>
-            Login Form
-         </div>
-         <div class="form-container">
-            <div class="form-inner">
-               <form action="#" class="login">
-                  <div class="field">
-                     <input type="text" placeholder="Email Address" required>
-                  </div>
-                  <div class="field">
-                     <input type="password" placeholder="Password" required>
-                  </div>
-                  <div class="pass-link">
-                     <a href="#">Forgot password?</a>
-                  </div>
-                  <div class="field btn">
-                     <div class="btn-layer"></div>
-                     <input type="submit" value="Login">
-                  </div>
-               </form>
+.login-page .body-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-page .container {
+    width: 100%;
+    max-width: 400px; /* You can adjust this width as per your design */
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.login-page .sign-in-page {
+    width: 100%;
+}
+
+.login-page .sign-in {
+    width: 100%;
+}
+
+.login-page .sign-in h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.login-page .register h4 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-page .form-wrapper {
+    width: 100%;
+}
+
+.login-page .form-group {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.login-page .btn-upper {
+    width: 100%;
+}
+
+.login-page .forgot-password {
+    text-align: right;
+    display: block;
+    margin-top: 10px;
+}
+
+.login-page .radio.outer-xs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.register-button{
+    margin-top:20px;
+}
+.register{
+    margin-bottom:20px;
+}
+.register-link{
+    margin-top:10px;
+}
+.login-link{
+    margin-top:10px;
+    font-size: 16px;
+}
+
+</style>
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="home.html">Home</a></li>
+                    <li class='active'>Login</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
+
+    <div class="login-page">
+        <div class="body-content">
+            <div class="container">
+                <div class="sign-in-page">
+                    <div class="form-wrapper">
+                        <div class="sign-in">
+                            <h4 class="">Sign in</h4>
+                            <form method="POST" action="{{ isset($guard) ? url($guard . '/login') : route('login') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <label class="info-title" for="exampleInputEmail1">User Email <span>*</span></label>
+                                    <input type="text" id="email" name="email"
+                                        class="form-control unicase-form-control text-input">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
+                                    <input type="password" id="password" name="password"
+                                        class="form-control unicase-form-control text-input" id="exampleInputPassword1">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="radio outer-xs">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Remember
+                                        me!
+                                    </label>
+                                    <a href="{{ route('password.request') }}" class="forgot-password pull-right">Forgot your
+                                        Password?</a>
+                                </div>
+                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+                                <div class="register-link">
+                                    <p>Don't have an account? <a href="#" id="show-register">Create Your Account</a></p>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="register" style="display: none;">
+                            <h4 class="">Register</h4>
+                            <hr>
+                            <form method="POST" action="{{ route('register') }}">
+                                @csrf
+                                <div class="form-group">
+                                    <label class="info-title" for="name">Name<span>*</span></label>
+                                    <input type="text" id="name" name="name"
+                                        class="form-control unicase-form-control text-input">
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="info-title" for="email">Email <span>*</span></label>
+                                    <input type="email" id="email" name="email"
+                                        class="form-control unicase-form-control text-input">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="info-title" for="phone">phone <span>*</span></label>
+                                    <input type="tel" id="phone" name="phone"
+                                        class="form-control unicase-form-control text-input">
+                                    @error('phone')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="info-title" for="password">Password <span>*</span></label>
+                                    <input type="password" id="password" name="password"
+                                        class="form-control unicase-form-control text-input">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label class="info-title" for="password_confirmation">Confirm Password <span>*</span></label>
+                                    <input type="password" id="password_confirmation" name="password_confirmation"
+                                        class="form-control unicase-form-control text-input">
+                                    @error('password_confirmation')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <button type="submit" class="btn-upper btn btn-primary checkout-page-button register-button">Register</button>
+                            </form>
+                            <div class="login-link">
+                                <p>Already have an account? <a href="#" id="show-login">Sign in</a></p>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
+        </div>
+    </div>
 
 
 
+<script>
+   document.getElementById('show-register').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('.login-page .sign-in').style.display = 'none';
+    document.querySelector('.login-page .register').style.display = 'block';
+});
+
+document.getElementById('show-login').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector('.login-page .register').style.display = 'none';
+    document.querySelector('.login-page .sign-in').style.display = 'block';
+});
 
 
-      <button id="openModalBtn">Open Login</button>
-
-      <div id="loginModal" class="modal">
-          <div class="modal-content">
-              <span class="close-btn">&times;</span>
-              <div class="wrapper">
-                  <div class="title-text">
-                      <div class="title login">Login Form</div>
-                  </div>
-                  <div class="form-container">
-                      <div class="form-inner">
-                          <form action="#" class="login">
-                              <div class="field">
-                                  <input type="text" placeholder="Email Address" required>
-                              </div>
-                              <div class="field">
-                                  <input type="password" placeholder="Password" required>
-                              </div>
-                              <div class="pass-link">
-                                  <a href="#">Forgot password?</a>
-                              </div>
-                              <div class="field btn">
-                                  <div class="btn-layer"></div>
-                                  <input type="submit" value="Login">
-                              </div>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <script>
-          const modal = document.getElementById("loginModal");
-          const btn = document.getElementById("openModalBtn");
-          const closeBtn = document.getElementsByClassName("close-btn")[0];
-
-          btn.onclick = function() {
-              modal.style.display = "block";
-          }
-
-          closeBtn.onclick = function() {
-              modal.style.display = "none";
-          }
-
-          window.onclick = function(event) {
-              if (event.target == modal) {
-                  modal.style.display = "none";
-              }
-          }
-      </script>
-   </body>
-</html>
+</script>
+@endsection
