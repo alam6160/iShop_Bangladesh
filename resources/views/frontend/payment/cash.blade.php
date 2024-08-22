@@ -1,14 +1,8 @@
 @extends('frontend.main_master')
 @section('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 @section('title')
     Cash On Delivery
 @endsection
-
-
-
-
 <div class="breadcrumb">
     <div class="container">
         <div class="breadcrumb-inner">
@@ -19,10 +13,6 @@
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
 </div><!-- /.breadcrumb -->
-
-
-
-
 <div class="body-content">
     <div class="container">
         <div class="checkout-box ">
@@ -76,13 +66,6 @@
                     </div>
                     <!-- checkout-progress-sidebar -->
                 </div> <!--  // end col md 6 -->
-
-
-
-
-
-
-
                 <div class="col-md-6">
                     <!-- checkout-progress-sidebar -->
                     <div class="checkout-progress-sidebar ">
@@ -158,7 +141,6 @@
             </div><!-- /.row -->
         </div><!-- /.checkout-box -->
         <!-- === ===== BRANDS CAROUSEL ==== ======== -->
-
 
         <!-- ===== == BRANDS CAROUSEL : END === === -->
     </div><!-- /.container -->

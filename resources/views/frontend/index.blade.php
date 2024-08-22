@@ -32,51 +32,45 @@
                                     @foreach ($special_offer as $product)
                                         <div class="product">
                                             <div class="product-micro">
-                                                <div class="row product-micro-row">
-                                                    <div class="col col-xs-5 col-md-4 col-sm-2">
+                                                <div class="row product-micro-row" style="margin-bottom: 15px;"> <!-- Added margin-bottom -->
+                                                    <div class="col-xs-4 col-md-4 col-sm-4">
                                                         <div class="product-image">
-                                                            <div class="image"> <a
-                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
-                                                                    <img src="{{ asset($product->product_thambnail) }}"
-                                                                        alt=""> </a> </div>
-                                                            <!-- /.image -->
-
+                                                            <div class="image">
+                                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                                    <img src="{{ asset($product->product_thambnail) }}" alt="" style="width: 100%; height: auto;">
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <!-- /.product-image -->
                                                     </div>
-                                                    <!-- /.col -->
-                                                    <div class="col col-xs-7 col-sm-2">
+                                                    <div class="col-xs-8 col-md-8 col-sm-8">
                                                         <div class="product-info">
-                                                            <h3 class="name"><a
-                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                            <h3 class="name">
+                                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
                                                                     @if (session()->get('language') == 'hindi')
                                                                         {{ $product->product_name_hin }}
                                                                     @else
                                                                         {{ $product->product_name_en }}
                                                                     @endif
-                                                                </a></h3>
+                                                                </a>
+                                                            </h3>
                                                             <div class="rating rateit-small"></div>
-                                                            <div class="product-price"> <span class="price">
-                                                                    ৳{{ $product->selling_price }} </span> </div>
-                                                            <!-- /.product-price -->
-
+                                                            <div class="product-price">
+                                                                <span class="price"> ৳{{ $product->selling_price }} </span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <!-- /.col -->
                                                 </div>
-                                                <!-- /.product-micro-row -->
                                             </div>
-                                            <!-- /.product-micro -->
-
                                         </div>
-                                    @endforeach <!-- // end special offer foreach -->
+                                    @endforeach
+
                                 </div>
                             </div>
-
                         </div>
                     </div>
-                    <!-- /.sidebar-widget-body -->
                 </div>
+
+
                 <!-- /.sidebar-widget -->
                 <!-- =========================== SPECIAL OFFER : END ==================================== -->
 
@@ -94,7 +88,8 @@
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">Special Deals</h3>
                     <div class="sidebar-widget-body outer-top-xs">
-                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs" data-item="6">
+                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs"
+                            data-item="6">
 
 
                             <div class="item">
@@ -546,8 +541,9 @@
                         <div class="col-md-7 col-sm-7">
                             <div class="wide-banner cnt-strip">
                                 <div class="image">
-                                    <img class="img-responsive" src="{{ asset($banner->first_img) }}" alt="Banner Image">
-                                 </div>
+                                    <img class="img-responsive" src="{{ asset($banner->first_img) }}"
+                                        alt="Banner Image">
+                                </div>
                             </div>
                             <!-- /.wide-banner -->
                         </div>
@@ -555,8 +551,7 @@
                         <div class="col-md-5 col-sm-5">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
-                                        src="{{ asset($banner->second_img) }}"
-                                        alt=""> </div>
+                                        src="{{ asset($banner->second_img) }}" alt=""> </div>
                             </div>
                             <!-- /.wide-banner -->
                         </div>
@@ -936,8 +931,7 @@
                         <div class="col-md-12">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
-                                         src="{{ asset($banner->third_img) }}"
-                                        alt=""> </div>
+                                        src="{{ asset($banner->third_img) }}" alt=""> </div>
                                 <div class="strip strip-text">
                                     <div class="strip-inner">
                                         <h2 class="text-right">New Mens Fashion<br>

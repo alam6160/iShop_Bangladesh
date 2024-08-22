@@ -1,12 +1,8 @@
 @extends('frontend.main_master')
 @section('content')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 @section('title')
-Stripe Payment Page 
+Stripe Payment Page
 @endsection
-
-
 <style>
     /**
  * The CSS shown here will not be introduced in the Quickstart guide, but shows
@@ -43,7 +39,7 @@ Stripe Payment Page
 			</ul>
 		</div><!-- /.breadcrumb-inner -->
 	</div><!-- /.container -->
-</div><!-- /.breadcrumb --> 
+</div><!-- /.breadcrumb -->
 
 
 
@@ -52,7 +48,7 @@ Stripe Payment Page
 	<div class="container">
 		<div class="checkout-box ">
 			<div class="row">
-				 
+
 
 
 
@@ -68,7 +64,7 @@ Stripe Payment Page
 		    <div class="">
 				<ul class="nav nav-checkout-progress list-unstyled">
 
-					 
+
 <hr>
 		 <li>
 		 	@if(Session::has('coupon'))
@@ -79,10 +75,10 @@ Stripe Payment Page
 ( {{ session()->get('coupon')['coupon_discount'] }} % )
  <hr>
 
- <strong>Coupon Discount : </strong> ${{ session()->get('coupon')['discount_amount'] }} 
+ <strong>Coupon Discount : </strong> ${{ session()->get('coupon')['discount_amount'] }}
  <hr>
 
-  <strong>Grand Total : </strong> ${{ session()->get('coupon')['total_amount'] }} 
+  <strong>Grand Total : </strong> ${{ session()->get('coupon')['total_amount'] }}
  <hr>
 
 
@@ -93,17 +89,17 @@ Stripe Payment Page
 <strong>Grand Total : </strong> ${{ $cartTotal }} <hr>
 
 
-		 	@endif 
+		 	@endif
 
 		 </li>
-					 
-					
 
-				</ul>		
+
+
+				</ul>
 			</div>
 		</div>
 	</div>
-</div> 
+</div>
 <!-- checkout-progress-sidebar -->
  </div> <!--  // end col md 6 -->
 
@@ -126,7 +122,7 @@ Stripe Payment Page
                             @csrf
         <div class="form-row">
             <label for="card-element">
-           
+
       <input type="hidden" name="name" value="{{ $data['shipping_name'] }}">
       <input type="hidden" name="email" value="{{ $data['shipping_email'] }}">
       <input type="hidden" name="phone" value="{{ $data['shipping_phone'] }}">
@@ -134,10 +130,10 @@ Stripe Payment Page
       <input type="hidden" name="division_id" value="{{ $data['division_id'] }}">
       <input type="hidden" name="district_id" value="{{ $data['district_id'] }}">
       <input type="hidden" name="state_id" value="{{ $data['state_id'] }}">
-      <input type="hidden" name="notes" value="{{ $data['notes'] }}"> 
+      <input type="hidden" name="notes" value="{{ $data['notes'] }}">
 
             </label>
-             
+
             <div id="card-element">
             <!-- A Stripe Element will be inserted here. -->
             </div>
@@ -147,18 +143,18 @@ Stripe Payment Page
         <br>
         <button class="btn btn-primary">Submit Payment</button>
         </form>
-		    
- 
+
+
 
 		</div>
 	</div>
-</div> 
+</div>
 <!-- checkout-progress-sidebar -->
  </div><!--  // end col md 6 -->
 
 
 
- 
+
 
 
 
@@ -166,7 +162,6 @@ Stripe Payment Page
 			</div><!-- /.row -->
 		</div><!-- /.checkout-box -->
 		<!-- === ===== BRANDS CAROUSEL ==== ======== -->
- 
 
 
 
@@ -174,13 +169,14 @@ Stripe Payment Page
 
 
 
-<!-- ===== == BRANDS CAROUSEL : END === === -->	
+
+<!-- ===== == BRANDS CAROUSEL : END === === -->
 </div><!-- /.container -->
 </div><!-- /.body-content -->
 
 
 
-  
+
 
  <script type="text/javascript">
     // Create a Stripe client.

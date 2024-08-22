@@ -82,6 +82,10 @@
             color: #666;
         }
     </style>
+    @php
+        use App\Models\Banner;
+        $banner = Banner::first();
+    @endphp
 
     <!-- ============================================== TOP MENU ============================================== -->
     <div class="top-bar animate-dropdown">
@@ -171,10 +175,13 @@
 
 
                     <!-- ============================================================= LOGO ============================================================= -->
-                    <div class="logo"> <a href="{{ url('/') }}"> <img src="{{ asset($setting->logo ?? '') }}"
-                                alt="logo"> </a> </div>
+                    <div class="logo">
+                        <a href="{{ url('/') }}">
+                            <img src="{{ asset($setting->logo ?? '') }}" alt="logo" style="width: 200px; height: auto; margin-bottom:2px">
+                        </a>
+                    </div>
                     <!-- /.logo -->
-                    <!-- ============================================================= LOGO : END ============================================================= -->
+                    <!-- ================================================== LOGO : END ======================================= -->
                 </div>
                 <!-- /.logo-holder -->
 
@@ -320,8 +327,6 @@
                                                                         @endif
                                                                     </h2>
                                                                 </a>
-
-
                                                                 <!--   // Get SubSubCategory Table Data -->
                                                                 @php
                                                                     $subsubcategories = App\Models\SubSubCategory::where(
