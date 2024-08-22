@@ -18,11 +18,13 @@ class BannerImgController extends Controller
 
 
 	public function BannerSettingUpdate(Request $request){
+        // return $request->all();
         $setting_id = $request->id;
         $imageUrls = [];
 
         $resizeDimensions = [
             'nav_img' => ['width' => 346, 'height' => 240],
+            'shop_banner' => ['width' => 850, 'height' => 360],
             'first_img' => ['width' => 482, 'height' => 180],
             'second_img' => ['width' => 336, 'height' => 180],
             'third_img' => ['width' => 848, 'height' => 201],
@@ -62,6 +64,7 @@ class BannerImgController extends Controller
         // Update the SiteSetting with the new image URLs
         $updateData = array_filter([
             'nav_img' => $imageUrls['nav_img'] ?? null,
+            'shop_banner' => $imageUrls['shop_banner'] ?? null,
             'first_img' => $imageUrls['first_img'] ?? null,
             'second_img' => $imageUrls['second_img'] ?? null,
             'third_img' => $imageUrls['third_img'] ?? null,

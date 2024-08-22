@@ -18,31 +18,18 @@
 <!-- /.breadcrumb -->
 <div class="body-content outer-top-xs">
     <div class='container'>
-
         <form action="{{ route('shop.filter') }}" method="post">
             @csrf
-
-
-
             <div class='row'>
                 <div class='col-md-3 sidebar'>
-
                     <!-- ===== == TOP NAVIGATION ======= ==== -->
                     @include('frontend.common.vertical_menu')
                     <!-- = ==== TOP NAVIGATION : END === ===== -->
-
-
-
-
                     <div class="sidebar-module-container">
                         <div class="sidebar-filter">
                             <!-- ============================================== SIDEBAR CATEGORY ============================================== -->
                             <div class="sidebar-widget wow fadeInUp">
                                 <h1 class="section-title">shop by</h1>
-
-
-
-
                                 <div class="widget-header">
                                     <h2 class="widget-title">Category</h2>
                                 </div>
@@ -54,9 +41,6 @@
                                                 $filterCat = explode(',', $_GET['category']);
                                             @endphp
                                         @endif
-
-
-
                                         @foreach ($categories as $category)
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
@@ -85,12 +69,7 @@
 
                                 <!-- /.sidebar-widget -->
 
-
-
-
                                 <!--  /////////// This is for Brand Filder /////////////// -->
-
-
 
                                 <div class="widget-header">
                                     <h4 class="widget-title">Brand Filter</h4>
@@ -123,37 +102,18 @@
                                                         @endif
 
                                                     </label>
-
-
                                                 </div>
                                                 <!-- /.accordion-heading -->
-
 
                                             </div>
                                             <!-- /.accordion-group -->
                                         @endforeach
-
-
-
-
-
                                     </div>
                                     <!-- /.accordion -->
                                 </div>
                                 <!-- /.sidebar-widget-body -->
                             </div>
                             <!-- /.sidebar-widget -->
-
-
-
-
-
-
-
-
-
-
-
                             <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
 
                             <!-- ============================================== PRICE SILDER============================================== -->
@@ -276,9 +236,9 @@
                     <div id="category" class="category-carousel hidden-xs">
                         <div class="item">
                             <div class="image"> <img
-                                    src="{{ asset('frontend/assets/images/banners/cat-banner-1.jpg') }}" alt=""
+                                    src="{{ asset($banner->shop_banner) }}" alt="banner"
                                     class="img-responsive"> </div>
-                            <div class="container-fluid">
+                            {{-- <div class="container-fluid">
                                 <div class="caption vertical-top text-left">
                                     <div class="big-text"> Big Sale </div>
                                     <div class="excerpt hidden-sm hidden-md"> Save up to 49% off </div>
@@ -286,15 +246,10 @@
                                         consectetur adipiscing elit </div>
                                 </div>
                                 <!-- /.caption -->
-                            </div>
+                            </div> --}}
                             <!-- /.container-fluid -->
                         </div>
                     </div>
-
-
-
-
-
                     <div class="clearfix filters-container m-t-10">
                         <div class="row">
                             <div class="col col-sm-6 col-md-2">
@@ -400,7 +355,8 @@
                                                                     <div class="tag new"><span>new</span></div>
                                                                 @else
                                                                     <div class="tag hot">
-                                                                        <span>{{ round($discount) }}%</span></div>
+                                                                        <span>{{ round($discount) }}%</span>
+                                                                    </div>
                                                                 @endif
                                                             </div>
                                                         </div>
@@ -420,10 +376,10 @@
                                                             <div class="description"></div>
                                                             @if ($product->discount_price == null)
                                                                 <div class="product-price"> <span class="price">
-                                                                    ৳{{ $product->selling_price }} </span> </div>
+                                                                        ৳{{ $product->selling_price }} </span> </div>
                                                             @else
                                                                 <div class="product-price"> <span class="price">
-                                                                    ৳{{ $product->discount_price }} </span> <span
+                                                                        ৳{{ $product->discount_price }} </span> <span
                                                                         class="price-before-discount">৳
                                                                         {{ $product->selling_price }}</span> </div>
                                                             @endif
@@ -435,25 +391,33 @@
                                                             <div class="action">
                                                                 <ul class="list-unstyled">
                                                                     <li class="add-cart-button btn-group">
-                                                                        <button class="btn btn-primary icon" type="button"
-                                                                            title="Add Cart" data-toggle="modal"
-                                                                            data-target="#exampleModal" id="{{ $product->id }}"
+                                                                        <button class="btn btn-primary icon"
+                                                                            type="button" title="Add Cart"
+                                                                            data-toggle="modal"
+                                                                            data-target="#exampleModal"
+                                                                            id="{{ $product->id }}"
                                                                             onclick="productView(this.id)"> <i
-                                                                                class="fa fa-shopping-cart"></i> </button>
+                                                                                class="fa fa-shopping-cart"></i>
+                                                                        </button>
 
-                                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                                        <button class="btn btn-primary cart-btn"
+                                                                            type="button">Add to
                                                                             cart</button>
                                                                     </li>
-                                                                    <button class="btn btn-primary icon" type="button"
-                                                                        title="Wishlist" id="{{ $product->id }}"
-                                                                        onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
+                                                                    <button class="btn btn-primary icon"
+                                                                        type="button" title="Wishlist"
+                                                                        id="{{ $product->id }}"
+                                                                        onclick="addToWishList(this.id)"> <i
+                                                                            class="fa fa-heart"></i>
                                                                     </button>
 
 
-                                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
+                                                                    <li class="lnk"> <a data-toggle="tooltip"
+                                                                            class="add-to-cart"
                                                                             id="{{ $product->id }}"
-                                                                            onclick="addToCompare(this.id)"title="Compare"> <i
-                                                                                class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                                            onclick="addToCompare(this.id)"title="Compare">
+                                                                            <i class="fa fa-signal"
+                                                                                aria-hidden="true"></i> </a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -511,13 +475,14 @@
                                                                 <div class="rating rateit-small"></div>
                                                                 @if ($product->discount_price == null)
                                                                     <div class="product-price"> <span class="price">
-                                                                        ৳{{ $product->selling_price }} </span>
+                                                                            ৳{{ $product->selling_price }} </span>
                                                                     </div>
                                                                 @else
                                                                     <div class="product-price"> <span class="price">
                                                                             ${{ $product->discount_price }} </span>
                                                                         <span class="price-before-discount">৳
-                                                                            {{ $product->selling_price }}</span> </div>
+                                                                            {{ $product->selling_price }}</span>
+                                                                    </div>
                                                                 @endif
 
                                                                 <!-- /.product-price -->
@@ -532,23 +497,33 @@
                                                                     <div class="action">
                                                                         <ul class="list-unstyled">
                                                                             <li class="add-cart-button btn-group">
-                                                                                <button class="btn btn-primary icon" type="button"
-                                                                                    title="Add Cart" data-toggle="modal"
-                                                                                    data-target="#exampleModal" id="{{ $product->id }}"
+                                                                                <button class="btn btn-primary icon"
+                                                                                    type="button" title="Add Cart"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#exampleModal"
+                                                                                    id="{{ $product->id }}"
                                                                                     onclick="productView(this.id)"> <i
-                                                                                        class="fa fa-shopping-cart"></i> </button>
+                                                                                        class="fa fa-shopping-cart"></i>
+                                                                                </button>
 
-                                                                                <button class="btn btn-primary cart-btn" type="button">Add to
+                                                                                <button
+                                                                                    class="btn btn-primary cart-btn"
+                                                                                    type="button">Add to
                                                                                     cart</button>
                                                                             </li>
-                                                                            <button class="btn btn-primary icon" type="button"
-                                                                                title="Wishlist" id="{{ $product->id }}"
-                                                                                onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
+                                                                            <button class="btn btn-primary icon"
+                                                                                type="button" title="Wishlist"
+                                                                                id="{{ $product->id }}"
+                                                                                onclick="addToWishList(this.id)"> <i
+                                                                                    class="fa fa-heart"></i>
                                                                             </button>
-                                                                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
+                                                                            <li class="lnk"> <a
+                                                                                    data-toggle="tooltip"
+                                                                                    class="add-to-cart"
                                                                                     id="{{ $product->id }}"
-                                                                                    onclick="addToCompare(this.id)"title="Compare"> <i
-                                                                                        class="fa fa-signal" aria-hidden="true"></i> </a>
+                                                                                    onclick="addToCompare(this.id)"title="Compare">
+                                                                                    <i class="fa fa-signal"
+                                                                                        aria-hidden="true"></i> </a>
                                                                             </li>
                                                                         </ul>
                                                                     </div>
@@ -561,9 +536,6 @@
                                                         </div>
                                                         <!-- /.col -->
                                                     </div>
-
-
-
                                                     @php
                                                         $amount = $product->selling_price - $product->discount_price;
                                                         $discount = ($amount / $product->selling_price) * 100;

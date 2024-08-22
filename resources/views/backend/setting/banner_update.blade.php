@@ -26,6 +26,13 @@
                                                     <img id="nav_img_preview" src="{{ $setting ? asset($setting->nav_img) : '' }}" alt="Nav Image" style="max-width: 200px; margin-top: 10px;">
                                                 </div>
                                                 <div class="form-group">
+                                                    <h5>Shop Page Banner <span class="text-danger"> </span></h5>
+                                                    <div class="controls">
+                                                        <input type="file" name="shop_banner" class="form-control" onchange="previewImage(this, 'shop_banner_preview')">
+                                                    </div>
+                                                    <img id="shop_banner_preview" src="{{ $setting ? asset($setting->shop_banner) : '' }}" alt="Shop banner" style="max-width: 200px; margin-top: 10px;">
+                                                </div>
+                                                <div class="form-group">
                                                     <h5>First Banner <span class="text-danger"> </span></h5>
                                                     <div class="controls">
                                                         <input type="file" name="first_img" class="form-control" onchange="previewImage(this, 'first_img_preview')">

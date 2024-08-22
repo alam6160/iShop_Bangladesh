@@ -69,11 +69,11 @@ class IndexController extends Controller
         $data['products'] = Product::where('status', 1)->latest()->limit(6)->get();
         $data['featured'] = Product::where('featured', 1)->latest()->limit(6)->get();
         $data['hot_deals'] = Product::where('hot_deals', 1)->whereNotNull('discount_price')->latest()->limit(3)->get();
-        $data['special_offer'] = Product::where('special_offer', 1)->latest()->limit(6)->get();
-        $data['special_deals'] = Product::where('special_deals', 1)->latest()->limit(3)->get();
+        $data['special_offer'] = Product::where('special_offer', 1)->latest()->limit(8)->get();
+        $data['special_deals'] = Product::where('special_deals', 1)->latest()->limit(8)->get();
 
         // Fetch sliders and categories
-        $data['sliders'] = Slider::where('status', 1)->latest()->limit(3)->get();
+        $data['sliders'] = Slider::where('status', 1)->latest()->limit(4)->get();
         $data['categories'] = Category::orderBy('category_name_en', 'ASC')->get();
 
         // Fetch specific categories and products
@@ -203,10 +203,11 @@ class IndexController extends Controller
         ->where('status', 1)
         ->avg('rating');
         $hot_deals = Product::where('hot_deals',1)->where('discount_price','!=',NULL)->orderBy('id','DESC')->limit(3)->get();
-        $timer = Time::first();
+        $special_offer = Product::where('special_offer', 1)->latest()->limit(6)->get();
+        $special_deals = Product::where('special_deals',1)->orderBy('id','DESC')->limit(3)->get(); $timer = Time::first();
         $banner = Banner::first();
 
-	 	return view('frontend.product.product_details',compact('product','multiImag','product_color_en','product_color_hin','product_size_en','product_size_hin','relatedProduct','avarage','reviewcount','hot_deals','timer','banner'));
+	 	return view('frontend.product.product_details',compact('product','multiImag','product_color_en','product_color_hin','product_size_en','product_size_hin','relatedProduct','avarage','reviewcount','hot_deals','timer','banner','special_offer','special_deals'));
 
 	}
 

@@ -18,8 +18,8 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Clothing</a></li>
-                <li class='active'>Floral Print Buttoned</li>
+                <li><a href="#">{{ $product['category']['category_name_en'] }}</a></li>
+                <li class='active'>{{ $product->product_name_en }}</li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
@@ -29,15 +29,116 @@
         <div class='row single-product'>
             <div class='col-md-3 sidebar'>
                 <div class="sidebar-module-container">
-                    <div class="home-banner outer-top-n">
+                    {{-- <div class="home-banner outer-top-n">
                         <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image">
-                    </div>
-
-
-
+                    </div> --}}
                     <!-- ====== === HOT DEALS ==== ==== -->
                     @include('frontend.common.hot_deals')
-                    <!-- ===== ===== HOT DEALS: END ====== ====== -->
+                    <!-- ===== ===== HOT DEALS: END ====== ====== --><div class="sidebar-widget outer-bottom-small wow fadeInUp">
+                    <h3 class="section-title">Special Offer</h3>
+                    <div class="sidebar-widget-body outer-top-xs">
+                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs" data-item="6">
+                            <div class="item">
+                                <div class="products special-product">
+
+                                    @foreach ($special_offer as $product)
+                                        <div class="product">
+                                            <div class="product-micro">
+                                                <div class="row product-micro-row d-flex align-items-center" style="margin-bottom: 15px;"> <!-- Flexbox for alignment -->
+                                                    <div class="col-xs-4 col-md-4 col-sm-4">
+                                                        <div class="product-image">
+                                                            <div class="image">
+                                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                                    <img src="{{ asset($product->product_thambnail) }}" alt="" class="img-fluid">
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-8 col-md-8 col-sm-8">
+                                                        <div class="product-info">
+                                                            <h3 class="name">
+                                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                                    @if (session()->get('language') == 'hindi')
+                                                                        {{ $product->product_name_hin }}
+                                                                    @else
+                                                                        {{ $product->product_name_en }}
+                                                                    @endif
+                                                                </a>
+                                                            </h3>
+                                                            <div class="rating rateit-small"></div>
+                                                            <div class="product-price">
+                                                                <span class="price"> ৳{{ $product->selling_price }} </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-widget outer-bottom-small wow fadeInUp">
+                    <h3 class="section-title">Special Deals</h3>
+                    <div class="sidebar-widget-body outer-top-xs">
+                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs"
+                            data-item="6">
+
+
+                            <div class="item">
+                                <div class="products special-product">
+
+                                    @foreach ($special_deals as $product)
+                                        <div class="product">
+                                            <div class="product-micro">
+                                                <div class="row product-micro-row">
+                                                    <div class="col col-xs-5 col-md-4 col-sm-2">
+                                                        <div class="product-image">
+                                                            <div class="image"> <a
+                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                                    <img src="{{ asset($product->product_thambnail) }}"
+                                                                        alt=""> </a> </div>
+                                                            <!-- /.image -->
+
+                                                        </div>
+                                                        <!-- /.product-image -->
+                                                    </div>
+                                                    <!-- /.col -->
+                                                    <div class="col col-xs-7 col-md-4 col-sm-2">
+                                                        <div class="product-info">
+                                                            <h3 class="name"><a
+                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                                    @if (session()->get('language') == 'hindi')
+                                                                        {{ $product->product_name_hin }}
+                                                                    @else
+                                                                        {{ $product->product_name_en }}
+                                                                    @endif
+                                                                </a></h3>
+                                                            <div class="rating rateit-small"></div>
+                                                            <div class="product-price"> <span class="price">
+                                                                    ৳{{ $product->selling_price }} </span> </div>
+                                                            <!-- /.product-price -->
+
+                                                        </div>
+                                                    </div>
+                                                    <!-- /.col -->
+                                                </div>
+                                                <!-- /.product-micro-row -->
+                                            </div>
+                                            <!-- /.product-micro -->
+
+                                        </div>
+                                    @endforeach <!-- // end special deals foreach -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /.sidebar-widget-body -->
+                </div>
 
                     <!-- ============================================== NEWSLETTER ============================================== -->
                     {{-- <div class="sidebar-widget newsletter wow fadeInUp outer-bottom-small outer-top-vs">
@@ -265,8 +366,8 @@
 
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
-                                                <a class="btn btn-primary" data-toggle="tooltip"
-                                                    data-placement="right" title="Wishlist" href="#">
+                                                <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
+                                                    title="Wishlist" href="#">
                                                     <i class="fa fa-heart"></i>
                                                 </a>
                                                 <a class="btn btn-primary" data-toggle="tooltip"
@@ -445,8 +546,6 @@
                                                                         src="{{ !empty($item->user->profile_photo_path) ? url('upload/user_images/' . $item->user->profile_photo_path) : url('upload/no_image.jpg') }}"
                                                                         width="40px;" height="40px;"><b>
                                                                         {{ $item->user->name }}</b>
-
-
                                                                     @if ($item->rating == null)
                                                                     @elseif($item->rating == 1)
                                                                         <span class="fa fa-star checked"></span>
@@ -479,18 +578,10 @@
                                                                         <span class="fa fa-star checked"></span>
                                                                         <span class="fa fa-star checked"></span>
                                                                     @endif
-
-
-
                                                                 </div>
-
                                                                 <div class="col-md-6">
-
                                                                 </div>
                                                             </div> <!-- // end row -->
-
-
-
                                                             <div class="review-title"><span
                                                                     class="summary">{{ $item->summary }}</span><span
                                                                     class="date"><i
@@ -502,33 +593,22 @@
                                                     @endif
                                                 @endforeach
                                             </div><!-- /.reviews -->
-
-
                                         </div><!-- /.product-reviews -->
-
-
-
                                         <div class="product-add-review">
                                             <h4 class="title">Write your own review</h4>
                                             <div class="review-table">
-
                                             </div><!-- /.review-table -->
-
                                             <div class="review-form">
                                                 @guest
                                                     <p> <b> For Add Product Review. You Need to Login First <a
                                                                 href="{{ route('login') }}">Login Here</a> </b> </p>
                                                 @else
                                                     <div class="form-container">
-
                                                         <form role="form" class="cnt-form" method="post"
                                                             action="{{ route('review.store') }}">
                                                             @csrf
-
                                                             <input type="hidden" name="product_id"
                                                                 value="{{ $product->id }}">
-
-
                                                             <table class="table">
                                                                 <thead>
                                                                     <tr>
@@ -557,10 +637,6 @@
 
                                                                 </tbody>
                                                             </table>
-
-
-
-
                                                             <div class="row">
                                                                 <div class="col-sm-6">
 
@@ -590,20 +666,15 @@
 
                                                         </form><!-- /.cnt-form -->
                                                     </div><!-- /.form-container -->
-
                                                 @endguest
-
-
                                             </div><!-- /.review-form -->
 
                                         </div><!-- /.product-add-review -->
 
                                     </div><!-- /.product-tab -->
                                 </div><!-- /.tab-pane -->
-
                                 <div id="tags" class="tab-pane">
                                     <div class="product-tag">
-
                                         <h4 class="title">Product Tags</h4>
                                         <form role="form" class="form-inline form-cnt">
                                             <div class="form-container">
@@ -612,10 +683,7 @@
                                                     <label for="exampleInputTag">Add Your Tags: </label>
                                                     <input type="email" id="exampleInputTag"
                                                         class="form-control txt">
-
-
                                                 </div>
-
                                                 <button class="btn btn-upper btn-primary" type="submit">ADD
                                                     TAGS</button>
                                             </div><!-- /.form-container -->
@@ -641,9 +709,6 @@
                 <section class="section featured-product wow fadeInUp">
                     <h3 class="section-title">Releted products</h3>
                     <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
-
-
-
                         @foreach ($relatedProduct as $product)
                             <div class="item item-carousel">
                                 <div class="products">
@@ -692,27 +757,24 @@
                                             <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
-                                                        <button class="btn btn-primary icon"
-                                                            type="button" title="Add Cart"
-                                                            data-toggle="modal"
-                                                            data-target="#exampleModal"
-                                                            id="{{ $product->id }}"
+                                                        <button class="btn btn-primary icon" type="button"
+                                                            title="Add Cart" data-toggle="modal"
+                                                            data-target="#exampleModal" id="{{ $product->id }}"
                                                             onclick="productView(this.id)"> <i
                                                                 class="fa fa-shopping-cart"></i> </button>
 
-                                                        <button class="btn btn-primary cart-btn"
-                                                            type="button">Add to cart</button>
+                                                        <button class="btn btn-primary cart-btn" type="button">Add to
+                                                            cart</button>
                                                     </li>
                                                     <button class="btn btn-primary icon" type="button"
                                                         title="Wishlist" id="{{ $product->id }}"
-                                                        onclick="addToWishList(this.id)"> <i
-                                                            class="fa fa-heart"></i> </button>
+                                                        onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
+                                                    </button>
 
-                                                    <li class="lnk"> <a data-toggle="tooltip"
-                                                            class="add-to-cart" id="{{ $product->id }}"
+                                                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart"
+                                                            id="{{ $product->id }}"
                                                             onclick="addToCompare(this.id)"title="Compare">
-                                                            <i class="fa fa-signal"
-                                                                aria-hidden="true"></i> </a> </li>
+                                                            <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                                                 </ul>
                                             </div>
                                         </div><!-- /.cart -->

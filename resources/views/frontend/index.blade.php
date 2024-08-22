@@ -32,12 +32,12 @@
                                     @foreach ($special_offer as $product)
                                         <div class="product">
                                             <div class="product-micro">
-                                                <div class="row product-micro-row" style="margin-bottom: 15px;"> <!-- Added margin-bottom -->
+                                                <div class="row product-micro-row d-flex align-items-center" style="margin-bottom: 15px;"> <!-- Flexbox for alignment -->
                                                     <div class="col-xs-4 col-md-4 col-sm-4">
                                                         <div class="product-image">
                                                             <div class="image">
                                                                 <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
-                                                                    <img src="{{ asset($product->product_thambnail) }}" alt="" style="width: 100%; height: auto;">
+                                                                    <img src="{{ asset($product->product_thambnail) }}" alt="" class="img-fluid">
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -69,7 +69,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <!-- /.sidebar-widget -->
                 <!-- =========================== SPECIAL OFFER : END ==================================== -->
@@ -712,9 +711,7 @@
                                                 @endif
                                             </div>
                                         </div>
-
                                         <!-- /.product-image -->
-
                                         <div class="product-info text-left">
                                             <h3 class="name"><a
                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
@@ -736,18 +733,13 @@
                                                         class="price-before-discount">৳
                                                         {{ $product->selling_price }}</span> </div>
                                             @endif
-
-
                                             <!-- /.product-price -->
-
                                         </div>
                                         <!-- /.product-info -->
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
-
-
                                                         <button class="btn btn-primary icon" type="button"
                                                             title="Add Cart" data-toggle="modal"
                                                             data-target="#exampleModal" id="{{ $product->id }}"
@@ -757,9 +749,6 @@
                                                         <button class="btn btn-primary cart-btn" type="button">Add to
                                                             cart</button>
                                                     </li>
-
-
-
                                                     <button class="btn btn-primary icon" type="button"
                                                         title="Wishlist" id="{{ $product->id }}"
                                                         onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
@@ -791,13 +780,6 @@
                 </section>
                 <!-- /.section -->
                 <!-- == ==== skip_product_0 PRODUCTS : END ==== === -->
-
-
-
-
-
-
-
 
                 <!-- == === skip_product_1 PRODUCTS == ==== -->
 
@@ -911,20 +893,6 @@
                 <!-- /.section -->
                 <!-- == ==== skip_product_1 PRODUCTS : END ==== === -->
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <!-- ============================================== WIDE PRODUCTS ============================================== -->
                 <div class="wide-banners wow fadeInUp outer-bottom-xs">
                     <div class="row">
@@ -1020,17 +988,13 @@
                                                         class="price-before-discount">৳
                                                         {{ $product->selling_price }}</span> </div>
                                             @endif
-
-
                                             <!-- /.product-price -->
-
                                         </div>
                                         <!-- /.product-info -->
                                         <div class="cart clearfix animate-effect">
                                             <div class="action">
                                                 <ul class="list-unstyled">
                                                     <li class="add-cart-button btn-group">
-
                                                         <button class="btn btn-primary icon" type="button"
                                                             title="Add Cart" data-toggle="modal"
                                                             data-target="#exampleModal" id="{{ $product->id }}"
@@ -1040,9 +1004,6 @@
                                                         <button class="btn btn-primary cart-btn" type="button">Add to
                                                             cart</button>
                                                     </li>
-
-
-
                                                     <button class="btn btn-primary icon" type="button"
                                                         title="Wishlist" id="{{ $product->id }}"
                                                         onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i>
@@ -1060,31 +1021,16 @@
                                         <!-- /.cart -->
                                     </div>
                                     <!-- /.product -->
-
                                 </div>
                                 <!-- /.products -->
                             </div>
                             <!-- /.item -->
                         @endforeach
-
-
                     </div>
                     <!-- /.home-owl-carousel -->
                 </section>
                 <!-- /.section -->
                 <!-- == ==== skip_brand_product_1 PRODUCTS : END ==== === -->
-
-
-
-
-
-
-
-
-
-
-
-
 
                 <!-- ============================================== BEST SELLER ============================================== -->
 
