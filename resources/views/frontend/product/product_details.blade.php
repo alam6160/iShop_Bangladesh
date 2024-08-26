@@ -217,8 +217,6 @@
                                             </a>
                                         </div><!-- /.single-product-gallery-item -->
                                     @endforeach
-
-
                                 </div><!-- /.single-product-slider -->
 
 
@@ -236,36 +234,14 @@
                                                 </a>
                                             </div>
                                         @endforeach
-
-
-
-
                                     </div><!-- /#owl-single-product-thumbnails -->
-
-
-
                                 </div><!-- /.gallery-thumbs -->
 
                             </div><!-- /.single-product-gallery -->
                         </div><!-- /.gallery-holder -->
 
-                        {{-- @php
-                            $reviewcount = App\Models\Review::where('product_id', $product->id)
-                                ->where('status', 1)
-                                ->latest()
-                                ->get();
-
-                            $avarage = App\Models\Review::where('product_id', $product->id)
-                                ->where('status', 1)
-                                ->avg('rating');
-
-                        @endphp --}}
-
-
                         <div class='col-sm-6 col-md-7 product-info-block'>
                             <div class="product-info">
-
-
                                 <h1 class="name" id="pname">
                                     @if (session()->get('language') == 'hindi')
                                         {{ $product->product_name_hin }}
@@ -364,27 +340,57 @@
                                             </div>
                                         </div>
 
+                                        {{-- <ul class="list-unstyled">
+                                            <li class="add-cart-button btn-group">
+                                                <button class="btn btn-primary icon"
+                                                    type="button" title="Add Cart"
+                                                    data-toggle="modal"
+                                                    data-target="#exampleModal"
+                                                    id="{{ $product->id }}"
+                                                    onclick="productView(this.id)"> <i
+                                                        class="fa fa-shopping-cart"></i>
+                                                </button>
+
+                                                <button class="btn btn-primary cart-btn"
+                                                    type="button">Add to
+                                                    cart</button>
+                                            </li>
+                                            <button class="btn btn-primary icon"
+                                                type="button" title="Wishlist"
+                                                id="{{ $product->id }}"
+                                                onclick="addToWishList(this.id)"> <i
+                                                    class="fa fa-heart"></i>
+                                            </button>
+                                            <li class="lnk"> <a data-toggle="tooltip"
+                                                    class="add-to-cart"
+                                                    id="{{ $product->id }}"
+                                                    onclick="addToCompare(this.id)"title="Compare">
+                                                    <i class="fa fa-signal"
+                                                        aria-hidden="true"></i> </a>
+                                            </li>
+                                        </ul> --}}
+
                                         <div class="col-sm-6">
                                             <div class="favorite-button m-t-10">
                                                 <a class="btn btn-primary" data-toggle="tooltip" data-placement="right"
-                                                    title="Wishlist" href="#">
+                                                    title="Wishlist" href="#" id="{{ $product->id }}"
+                                                    onclick="addToWishList(this.id)">
                                                     <i class="fa fa-heart"></i>
                                                 </a>
+
                                                 <a class="btn btn-primary" data-toggle="tooltip"
-                                                    data-placement="right" title="Add to Compare" href="#">
+                                                    data-placement="right" title="Add to Compare" href="#"id="{{ $product->id }}"
+                                                    onclick="addToWishList(this.id)">
                                                     <i class="fa fa-signal"></i>
                                                 </a>
-                                                <a class="btn btn-primary" data-toggle="tooltip"
+                                                {{-- <a class="btn btn-primary" data-toggle="tooltip"
                                                     data-placement="right" title="E-mail" href="#">
                                                     <i class="fa fa-envelope"></i>
-                                                </a>
+                                                </a> --}}
                                             </div>
                                         </div>
-
                                     </div><!-- /.row -->
                                 </div><!-- /.price-container -->
-
-
                                 <!--     /// Add Product Color And Product Size ///// -->
 
                                 <div class="row">

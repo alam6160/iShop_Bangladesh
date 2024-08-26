@@ -46,6 +46,10 @@
               <th> Post Code : </th>
                <th> {{ $order->post_code }} </th>
             </tr>
+            <tr>
+                <th> location : </th>
+                 <th> {{ $order->notes }} </th>
+              </tr>
 
             <tr>
               <th> Order Date : </th>

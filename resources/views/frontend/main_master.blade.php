@@ -450,8 +450,6 @@
                     }
 
                     // End Message
-
-
                 }
 
             })
@@ -606,9 +604,8 @@
             </td>
 
              <td class="col-md-2">
-            <strong>$${value.subtotal} </strong>
+            <strong>৳ ${value.subtotal} </strong>
             </td>
-
 
         <td class="col-md-1 close-btn">
             <button type="submit" class="" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-times"></i></button>
@@ -622,9 +619,6 @@
 
         }
         cart();
-
-
-
         ///  Cart remove Start
         function cartRemove(id) {
             $.ajax({
@@ -775,10 +769,10 @@
                             `<tr>
                 <th>
                     <div class="cart-sub-total">
-                        Subtotal<span class="inner-left-md">$ ${data.total}</span>
+                        Subtotal<span class="inner-left-md">৳ ${data.total}</span>
                     </div>
                     <div class="cart-grand-total">
-                        Grand Total<span class="inner-left-md">$ ${data.total}</span>
+                        Grand Total<span class="inner-left-md">৳ ${data.total}</span>
                     </div>
                 </th>
             </tr>`
@@ -790,20 +784,20 @@
                             `<tr>
         <th>
             <div class="cart-sub-total">
-                Subtotal<span class="inner-left-md">$ ${data.subtotal}</span>
+                Subtotal<span class="inner-left-md">৳ ${data.subtotal}</span>
             </div>
             <div class="cart-sub-total">
-                Coupon<span class="inner-left-md">$ ${data.coupon_name}</span>
+                Coupon<span class="inner-left-md">৳ ${data.coupon_name}</span>
                 <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button>
             </div>
 
              <div class="cart-sub-total">
-                Discount Amount<span class="inner-left-md">$ ${data.discount_amount}</span>
+                Discount Amount<span class="inner-left-md">৳ ${data.discount_amount}</span>
             </div>
 
 
             <div class="cart-grand-total">
-                Grand Total<span class="inner-left-md">$ ${data.total_amount}</span>
+                Grand Total<span class="inner-left-md">৳ ${data.total_amount}</span>
             </div>
         </th>
             </tr>`
@@ -949,10 +943,10 @@
                                 ? `${value.product.selling_price}`
                                 :
                                 `${value.product.discount_price} <span>
-                                    <del>
-                                    ${value.product.selling_price}
-                                    </del>
-                                    </span>`
+                                        <del>
+                                        ${value.product.selling_price}
+                                        </del>
+                                        </span>`
                             }
                             </div>
 
@@ -966,7 +960,6 @@
                         </tr>
 
                         <tr>
-
                              <th>Availability</th>
 
                              <td class=" detail-info in-stock" data-title="Stock">
@@ -982,13 +975,9 @@
                         <tr >
                             <th>Remove</th>
                             <td <button class="btn btn-danger btn-block" type="submit" value="remove"  id="${value.id}" onclick="compareRemove(this.id)">Remove</i></button></td>
-
                         </tr>
-
                     </tr>
                     </tr>
-
-
                     `
                     });
 

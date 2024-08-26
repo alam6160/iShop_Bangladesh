@@ -76,15 +76,11 @@
                                 </div>
                                 <div class="sidebar-widget-body">
                                     <div class="accordion">
-
                                         @if (!empty($_GET['brand']))
                                             @php
                                                 $filterBrand = explode(',', $_GET['brand']);
                                             @endphp
                                         @endif
-
-
-
                                         @foreach ($brands as $brand)
                                             <div class="accordion-group">
                                                 <div class="accordion-heading">
@@ -117,47 +113,27 @@
                             <!-- ============================================== SIDEBAR CATEGORY : END ============================================== -->
 
                             <!-- ============================================== PRICE SILDER============================================== -->
-                            <div class="sidebar-widget wow fadeInUp">
+                            {{-- <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Price Slider</h4>
                                 </div>
                                 <div class="sidebar-widget-body m-t-10">
                                     <div class="price-range-holder">
                                         <span class="min-max">
-                                            <span class="pull-left">৳100.00</span>
-                                            <span class="pull-right">৳1000.00</span>
+                                            <span class="pull-left" id="min-price">৳0</span>
+                                            <span class="pull-right" id="max-price">৳10000</span>
                                         </span>
-                                        <input type="text" id="amount"
-                                            style="border:0; color:#666666; font-weight:bold;text-align:center;">
+                                        <input type="text" id="amount" style="border:0; color:#666666; font-weight:bold;text-align:center;" readonly>
                                         <div id="price-slider"></div>
                                     </div>
                                     <!-- /.price-range-holder -->
-                                    <a href="#" id="filter-products" class="lnk btn btn-primary">Show Now</a>
                                 </div>
                                 <!-- /.sidebar-widget-body -->
-                            </div>
-
-
-                            {{-- <div class="sidebar-widget wow fadeInUp">
-                <div class="widget-header">
-                  <h4 class="widget-title">Price Slider</h4>
-                </div>
-                <div class="sidebar-widget-body m-t-10">
-                  <div class="price-range-holder"> <span class="min-max">
-                    <span class="pull-left">৳100.00</span>
-                    <span class="pull-right">৳1000.00</span>
-                </span>
-                    <input type="text" id="amount"  class="price-slider" style="border:0; color:#666666; font-weight:bold;text-align:center;">
-                    <input type="text" class="price-slider" value="" >
-                  </div>
-                  <!-- /.price-range-holder -->
-                  <a href="#" class="lnk btn btn-primary">Show Now</a> </div>
-                <!-- /.sidebar-widget-body -->
-              </div> --}}
+                            </div> --}}
                             <!-- /.sidebar-widget -->
                             <!-- ============================================== PRICE SILDER : END ============================================== -->
                             <!-- ============================================== MANUFACTURES============================================== -->
-                            <div class="sidebar-widget wow fadeInUp">
+                            {{-- <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Manufactures</h4>
                                 </div>
@@ -173,11 +149,11 @@
                                     <!--<a href="#" class="lnk btn btn-primary">Show Now</a>-->
                                 </div>
                                 <!-- /.sidebar-widget-body -->
-                            </div>
+                            </div> --}}
                             <!-- /.sidebar-widget -->
                             <!-- ============================================== MANUFACTURES: END ============================================== -->
                             <!-- ============================================== COLOR============================================== -->
-                            <div class="sidebar-widget wow fadeInUp">
+                            {{-- <div class="sidebar-widget wow fadeInUp">
                                 <div class="widget-header">
                                     <h4 class="widget-title">Colors</h4>
                                 </div>
@@ -192,7 +168,7 @@
                                     </ul>
                                 </div>
                                 <!-- /.sidebar-widget-body -->
-                            </div>
+                            </div> --}}
                             <!-- /.sidebar-widget -->
                             <!-- ==================== COLOR: END ============================================== -->
                             <!-- == ======= COMPARE==== ==== -->
@@ -228,8 +204,6 @@
                 </div>
                 <!-- /.sidebar -->
                 <div class='col-md-9'>
-
-
 
                     <!-- == ==== SECTION – HERO === ====== -->
 
@@ -334,7 +308,7 @@
                                 <div class="category-product">
                                     <div class="row">
                                         @foreach ($products as $product)
-                                            <div class="col-sm-6 col-md-4 col-sm-2 wow fadeInUp">
+                                            <div class="col-sm-2 col-md-2 col-lg-3 wow fadeInUp">
                                                 <div class="products">
                                                     <div class="product">
                                                         <div class="product-image">
@@ -343,7 +317,6 @@
                                                                         src="{{ asset($product->product_thambnail) }}"
                                                                         alt=""></a> </div>
                                                             <!-- /.image -->
-
                                                             @php
                                                                 $amount =
                                                                     $product->selling_price - $product->discount_price;
@@ -410,8 +383,6 @@
                                                                         onclick="addToWishList(this.id)"> <i
                                                                             class="fa fa-heart"></i>
                                                                     </button>
-
-
                                                                     <li class="lnk"> <a data-toggle="tooltip"
                                                                             class="add-to-cart"
                                                                             id="{{ $product->id }}"
@@ -639,8 +610,6 @@
             </div>
             <!-- /.logo-slider -->
             <!-- ============================================== BRANDS CAROUSEL : END ============================================== -->
-
-
         </form>
 
     </div>
@@ -650,11 +619,10 @@
 <!-- /.body-content -->
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"
-    integrity="sha512-1Uoej7M5KJ0P7N3/gcB60KYpYNlNmRJ+1Ik1EGge3jLyXgR/3b+0cLQf9kF4q7vGqNvE99H8ZLNU5fvYd+vGhw=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+{{-- <script>
     console.log('hi');
     jQuery(document).ready(function() {
 
@@ -696,5 +664,77 @@
             }
         });
     }
-</script>
+</script> --}}
+
+<script>
+    $(document).ready(function() {
+        console.log("Document is ready");
+
+        $("#price-slider").slider({
+            range: true,
+            min: 0,
+            max: 10000,
+            values: [0, 10000],
+            slide: function(event, ui) {
+                console.log("Slider values: ", ui.values[0], ui.values[1]);
+
+                $("#min-price").text('৳' + ui.values[0]);
+                $("#max-price").text('৳' + ui.values[1]);
+                $("#amount").val("৳" + ui.values[0] + " - ৳" + ui.values[1]);
+
+                $.ajax({
+                    url: route('product.price.slider'),
+                    method: 'GET',
+                    data: {
+                        min_price: ui.values[0],
+                        max_price: ui.values[1]
+                    },
+                    success: function(products) {
+                        console.log("AJAX Success: ", products);
+                        $('#product-list').empty();
+
+                        products.forEach(function(product) {
+                            var productHtml = `
+                                <div class="product">
+                                    <div class="product-micro">
+                                        <div class="row product-micro-row">
+                                            <div class="col col-xs-5 col-md-4 col-sm-2">
+                                                <div class="product-image">
+                                                    <div class="image">
+                                                        <a href="/product/details/${product.id}/${product.product_slug_en}">
+                                                            <img src="/${product.product_thambnail}" alt="">
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col col-xs-7 col-sm-4">
+                                                <div class="product-info">
+                                                    <h3 class="name">
+                                                        <a href="/product/details/${product.id}/${product.product_slug_en}">
+                                                            ${product.product_name_en}
+                                                        </a>
+                                                    </h3>
+                                                    <div class="rating rateit-small"></div>
+                                                    <div class="product-price">
+                                                        <span class="price">৳${product.selling_price}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                            $('#product-list').append(productHtml);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("AJAX Error: ", status, error);
+                    }
+                });
+            }
+        });
+
+        $("#amount").val("৳" + $("#price-slider").slider("values", 0) +
+            " - ৳" + $("#price-slider").slider("values", 1));
+    });
+    </script>
 @endsection

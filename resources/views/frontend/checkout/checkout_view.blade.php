@@ -13,10 +13,6 @@
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
 </div><!-- /.breadcrumb -->
-
-
-
-
 <div class="body-content">
     <div class="container">
         <div class="checkout-box ">
@@ -31,20 +27,15 @@
                             <!-- panel-heading -->
 
                             <div id="collapseOne" class="panel-collapse collapse in">
-
+                                <h1 class="checkout-subtitle" style="margin-bottom: 20px"><b>Shipping Address</b></h1>
                                 <!-- panel-body  -->
                                 <div class="panel-body">
                                     <div class="row">
-
                                         <!-- guest-login -->
                                         <div class="col-md-6 col-sm-6 already-registered-login">
-                                            <h4 class="checkout-subtitle"><b>Shipping Address</b></h4>
-
                                             <form class="register-form" action="{{ route('checkout.store') }}"
                                                 method="POST">
                                                 @csrf
-
-
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Shipping
                                                             Name</b> <span>*</span></label>
@@ -53,8 +44,6 @@
                                                         id="exampleInputEmail1" placeholder="Full Name"
                                                         value="{{ Auth::user()->name }}" required="">
                                                 </div> <!-- // end form group  -->
-
-
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Email </b>
                                                         <span>*</span></label>
@@ -63,8 +52,6 @@
                                                         id="exampleInputEmail1" placeholder="Email"
                                                         value="{{ Auth::user()->email }}" required="">
                                                 </div> <!-- // end form group  -->
-
-
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Phone</b>
                                                         <span>*</span></label>
@@ -74,28 +61,18 @@
                                                         value="{{ Auth::user()->phone }}" required="">
                                                 </div> <!-- // end form group  -->
 
-
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Post Code </b>
-                                                        <span>*</span></label>
+                                                    </label>
                                                     <input type="text" name="post_code"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="Post Code" required="">
+                                                        id="exampleInputEmail1" placeholder="Post Code">
                                                 </div> <!-- // end form group  -->
-
-
-
                                         </div>
+
                                         <!-- guest-login -->
-
-
-
-
-
                                         <!-- already-registered-login -->
                                         <div class="col-md-6 col-sm-6 already-registered-login">
-
-
                                             <div class="form-group">
                                                 <h5><b>Division Select </b> <span class="text-danger">*</span></h5>
                                                 <div class="controls">
@@ -112,71 +89,76 @@
                                                     @enderror
                                                 </div>
                                             </div> <!-- // end form group -->
-
-
                                             <div class="form-group">
                                                 <h5><b>District Select</b> <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <select name="district_id" class="form-control" required="">
                                                         <option value="" selected="" disabled="">Select
                                                             District</option>
-
                                                     </select>
                                                     @error('district_id')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div> <!-- // end form group -->
-
-
                                             <div class="form-group">
                                                 <h5><b>State Select</b> <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <select name="state_id" class="form-control" required="">
                                                         <option value="" selected="" disabled="">Select
                                                             State</option>
-
                                                     </select>
                                                     @error('state_id')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div> <!-- // end form group -->
-
-
                                             <div class="form-group">
-                                                <label class="info-title" for="exampleInputEmail1">Notes
-                                                    <span>*</span></label>
+                                                <label class="info-title" for="exampleInputEmail1">Details Address
+                                                </label>
                                                 <textarea class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"></textarea>
                                             </div> <!-- // end form group  -->
-
-
-
-
-
-
-
-
                                         </div>
                                         <!-- already-registered-login -->
-
                                     </div>
                                 </div>
                                 <!-- panel-body  -->
-
                             </div><!-- row -->
                         </div>
                         <!-- End checkout-step-01  -->
-
-
-
-
                     </div><!-- /.checkout-steps -->
+
+                    <div class="col-md-8 col-sm-6">
+                        @php
+                            // dd(Session::get('coupon')); // Uncomment this for debugging
+                        @endphp
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Discount Code</h5>
+                                <p class="card-text">Enter your coupon code if you have one.</p>
+                            </div>
+                            <div class="card-body">
+                                @if (Session::has('coupon'))
+                                    <div class="alert alert-success">
+                                        <strong>Coupon Applied!</strong> Your discount has been applied.
+                                    </div>
+                                @else
+                                    <form>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control unicase-form-control text-input"
+                                                   placeholder="Your Coupon.." id="coupon_name">
+                                        </div>
+                                        <div class="clearfix pull-right">
+                                            <button type="submit" class="btn btn-primary btn-upper" onclick="applyCoupon()">APPLY COUPON</button>
+                                        </div>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-
-
-
                 <div class="col-md-4">
                     <!-- checkout-progress-sidebar -->
                     <div class="checkout-progress-sidebar ">
@@ -187,7 +169,6 @@
                                 </div>
                                 <div class="">
                                     <ul class="nav nav-checkout-progress list-unstyled">
-
                                         @foreach ($carts as $item)
                                             <li>
                                                 <strong>Image: </strong>
@@ -210,18 +191,15 @@
                                             @if (Session::has('coupon'))
                                                 <strong>SubTotal: </strong> ৳{{ $cartTotal }}
                                                 <hr>
-
                                                 <strong>Coupon Name : </strong>
                                                 {{ session()->get('coupon')['coupon_name'] }}
                                                 ( {{ session()->get('coupon')['coupon_discount'] }} % )
                                                 <hr>
-
                                                 <strong>Coupon Discount : </strong>
-                                                ${{ session()->get('coupon')['discount_amount'] }}
+                                                ৳{{ session()->get('coupon')['discount_amount'] }}
                                                 <hr>
-
                                                 <strong>Grand Total : </strong>
-                                                ${{ session()->get('coupon')['total_amount'] }}
+                                                ৳{{ session()->get('coupon')['total_amount'] }}
                                                 <hr>
                                             @else
                                                 <strong>SubTotal: </strong> ৳{{ $cartTotal }}
@@ -230,11 +208,7 @@
                                                 <strong>Grand Total : </strong> ৳{{ $cartTotal }}
                                                 <hr>
                                             @endif
-
                                         </li>
-
-
-
                                     </ul>
                                 </div>
                             </div>
@@ -250,64 +224,40 @@
                                 <div class="panel-heading">
                                     <h4 class="unicase-checkout-title">Select Payment Method</h4>
                                 </div>
-
-
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <label for="">Stripe</label>
                                         <input type="radio" name="payment_method" value="stripe">
                                         <img src="{{ asset('frontend/assets/images/payments/4.png') }}">
-                                    </div> <!-- end col md 4 -->
+                                    </div> <!-- end col md 4 --> --}}
 
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <label for="">Card</label>
                                         <input type="radio" name="payment_method" value="card">
                                         <img src="{{ asset('frontend/assets/images/payments/3.png') }}">
+                                    </div> <!-- end col md 4 --> --}}
+
+                                    <div class="col-md-6"> <label for="">Cash On Delivary</label>
+                                        <input type="hidden" name="payment_method" value="cash">
+                                        <img src="{{ asset('frontend/assets/images/payments/cash_payments.jpg') }}">
                                     </div> <!-- end col md 4 -->
-
-                                    <div class="col-md-4">
-                                        <label for="">Cash</label>
-                                        <input type="radio" name="payment_method" value="cash">
-                                        <img src="{{ asset('frontend/assets/images/payments/6.png') }}">
-                                    </div> <!-- end col md 4 -->
-
-
                                 </div> <!-- // end row  -->
                                 <hr>
                                 <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Payment
                                     Step</button>
-
-
                             </div>
                         </div>
                     </div>
                     <!-- checkout-progress-sidebar -->
                 </div>
-
-
-
-
-
-
-
                 </form>
             </div><!-- /.row -->
         </div><!-- /.checkout-box -->
         <!-- === ===== BRANDS CAROUSEL ==== ======== -->
 
-
-
-
-
-
-
-
         <!-- ===== == BRANDS CAROUSEL : END === === -->
     </div><!-- /.container -->
 </div><!-- /.body-content -->
-
-
-
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -332,9 +282,6 @@
                 alert('danger');
             }
         });
-
-
-
         $('select[name="district_id"]').on('change', function() {
             var district_id = $(this).val();
             if (district_id) {

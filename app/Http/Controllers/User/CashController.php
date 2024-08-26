@@ -42,7 +42,7 @@ class CashController extends Controller
 
      	'currency' =>  'bdt',
      	'amount' => $total_amount,
-     	'invoice_no' => 'Rifa'.mt_rand(10000000,99999999),
+     	'invoice_no' => 'Rifa_Mart'.mt_rand(10000000,99999999),
      	'order_date' => Carbon::now()->format('d F Y'),
      	'order_month' => Carbon::now()->format('F'),
      	'order_year' => Carbon::now()->format('Y'),
@@ -62,6 +62,8 @@ class CashController extends Controller
      	];
 
      	Mail::to($request->email)->send(new OrderMail($data));
+        $adminEmail = 'admin@example.com'; // Replace with the actual admin email
+        Mail::to($adminEmail)->send(new OrderMail($data));
 
      // End Send Email
      $carts = Cart::content();
@@ -77,8 +79,6 @@ class CashController extends Controller
 
      	]);
      }
-
-
      if (Session::has('coupon')) {
      	Session::forget('coupon');
      }
@@ -90,7 +90,7 @@ class CashController extends Controller
 			'alert-type' => 'success'
 		);
 
-		return redirect()->route('dashboard')->with($notification);
+		return redirect()->route('my.orders')->with($notification);
 
 
     } // end method

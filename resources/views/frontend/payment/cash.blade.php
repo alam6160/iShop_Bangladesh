@@ -27,25 +27,22 @@
                                 </div>
                                 <div class="">
                                     <ul class="nav nav-checkout-progress list-unstyled">
-
-
                                         <hr>
                                         <li>
                                             @if (Session::has('coupon'))
                                                 <strong>SubTotal: </strong> ৳{{ $cartTotal }}
                                                 <hr>
-
                                                 <strong>Coupon Name : </strong>
                                                 {{ session()->get('coupon')['coupon_name'] }}
                                                 ( {{ session()->get('coupon')['coupon_discount'] }} % )
                                                 <hr>
 
                                                 <strong>Coupon Discount : </strong>
-                                                ${{ session()->get('coupon')['discount_amount'] }}
+                                                ৳{{ session()->get('coupon')['discount_amount'] }}
                                                 <hr>
 
                                                 <strong>Grand Total : </strong>
-                                                ${{ session()->get('coupon')['total_amount'] }}
+                                                ৳{{ session()->get('coupon')['total_amount'] }}
                                                 <hr>
                                             @else
                                                 <strong>SubTotal: </strong> ৳{{ $cartTotal }}
@@ -56,9 +53,6 @@
                                             @endif
 
                                         </li>
-
-
-
                                     </ul>
                                 </div>
                             </div>
@@ -72,18 +66,15 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="unicase-checkout-title">Select Payment Method</h4>
+                                    <h4 class="unicase-checkout-title"> Payment Method</h4>
                                 </div>
 
                                 @if (auth()->check())
                                     <form action="{{ route('cash.order') }}" method="post" id="payment-form">
                                         @csrf
                                         <div class="form-row">
-
-                                            <img src="{{ asset('frontend/assets/images/payments/cash.png') }}">
-
+                                            <img src="{{ asset('frontend/assets/images/payments/cash_payments.jpg') }}">
                                             <label for="card-element">
-
                                                 <input type="hidden" name="name"
                                                     value="{{ $data['shipping_name'] }}">
                                                 <input type="hidden" name="email"
@@ -107,7 +98,7 @@
                                     <form action="{{ route('cash.order.guest') }}" method="post" id="payment-form">
                                         @csrf
                                         <div class="form-row">
-                                            <img src="{{ asset('frontend/assets/images/payments/cash.png') }}">
+                                            <img src="{{ asset('frontend/assets/images/payments/cash_payments.jpg') }}">
                                             <label for="card-element">
                                                 <input type="hidden" name="name"
                                                     value="{{ $data['shipping_name'] }}">

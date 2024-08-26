@@ -347,5 +347,19 @@ public function ProductStock(){
     return view('backend.product.product_stock',compact('products'));
   }
 
+  public function filterProducts(Request $request)
+  {
+      $minPrice = $request->input('min_price');
+      $maxPrice = $request->input('max_price');
+
+      // Retrieve products within the price range
+      $filteredProducts = Product::whereBetween('discount_price', [$minPrice, $maxPrice])->get();
+
+      // Pass the $filteredProducts variable to the view
+      return view('frontend.shop.shop_page', compact('filteredProducts'));
+  }
+
+
+
 
 }

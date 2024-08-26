@@ -177,6 +177,7 @@ Route::middleware(['auth:admin'])->group(function () {
         Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
 
         Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
+        Route::get('/filter-products', [ProductController::class, 'filterProducts'])->name('product.price.slider');
     });
 
 
