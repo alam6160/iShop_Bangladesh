@@ -38,7 +38,7 @@ class CashController extends Controller
             'payment_method' => 'Cash On Delivery',
             'currency' => 'bdt',
             'amount' => $total_amount,
-            'invoice_no' => 'Rifa_Mart' . mt_rand(10000000, 99999999),
+            'invoice_no' => 'Rifa_Mart_' . mt_rand(10000000, 99999999),
             'order_date' => Carbon::now()->format('d F Y'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
@@ -71,7 +71,7 @@ class CashController extends Controller
             'email' => $invoice->email,
             'payment_type' => $invoice->payment_type,
             'order_date' => $invoice->order_date,
-            'products' => $productNames, 
+            'products' => $productNames,
         ];
 
         // Send email to the user
