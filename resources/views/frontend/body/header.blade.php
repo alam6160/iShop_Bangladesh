@@ -136,7 +136,7 @@
                 <li><a href="#">GBP</a></li>
               </ul>
             </li> --}}
-                        <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
+                        {{-- <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle"
                                 data-hover="dropdown" data-toggle="dropdown"><span class="value">
                                     @if (session()->get('language') == 'hindi')
                                         भाषा: हिन्दी
@@ -151,7 +151,7 @@
                                     <li><a href="{{ route('hindi.language') }}">हिन्दी</a></li>
                                 @endif
                             </ul>
-                        </li>
+                        </li> --}}
                     </ul>
                     <!-- /.list-unstyled -->
                 </div>

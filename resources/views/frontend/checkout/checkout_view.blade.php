@@ -128,7 +128,7 @@
                         <!-- End checkout-step-01  -->
                     </div><!-- /.checkout-steps -->
 
-                    <div class="col-md-8 col-sm-6">
+                    {{-- <div class="col-md-8 col-sm-6">
                         @php
                             // dd(Session::get('coupon')); // Uncomment this for debugging
                         @endphp
@@ -156,7 +156,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
                 <div class="col-md-4">

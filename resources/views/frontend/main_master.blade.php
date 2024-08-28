@@ -13,6 +13,7 @@
     <meta name="author" content="{{ $seo->meta_author ?? '' }}">
     <meta name="keywords" content="{{ $seo->meta_keyword ?? '' }}">
     <meta name="robots" content="all">
+    <link rel="icon" href="{{ asset('backend/images/logo-dark.png') }}">
 
     <!-- /// Google Analytics Code // -->
     <script>
