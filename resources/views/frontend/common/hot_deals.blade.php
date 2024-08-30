@@ -1,4 +1,11 @@
-<div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
+<style>
+    @media only screen and (max-width: 767px) {
+        .test-hot {
+            display: none;
+        }
+    }
+    </style>
+<div class="sidebar-widget test-hot hot-deals wow fadeInUp outer-bottom-xs">
     <h3 class="section-title">Hot Deals</h3>
     <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
         @foreach ($hot_deals as $product)

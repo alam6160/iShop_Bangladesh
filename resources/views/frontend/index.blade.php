@@ -22,53 +22,7 @@
 
                 <!-- ============================================== SPECIAL OFFER ============================================== -->
 
-                <div class="sidebar-widget outer-bottom-small wow fadeInUp">
-                    <h3 class="section-title">Special Offer</h3>
-                    <div class="sidebar-widget-body outer-top-xs">
-                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs" data-item="6">
-                            <div class="item">
-                                <div class="products special-product">
-
-                                    @foreach ($special_offer as $product)
-                                        <div class="product">
-                                            <div class="product-micro">
-                                                <div class="row product-micro-row d-flex align-items-center" style="margin-bottom: 15px;"> <!-- Flexbox for alignment -->
-                                                    <div class="col-xs-4 col-md-4 col-sm-4">
-                                                        <div class="product-image">
-                                                            <div class="image">
-                                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
-                                                                    <img src="{{ asset($product->product_thambnail) }}" alt="" class="img-fluid">
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xs-8 col-md-8 col-sm-8">
-                                                        <div class="product-info">
-                                                            <h3 class="name">
-                                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
-                                                                    @if (session()->get('language') == 'hindi')
-                                                                        {{ $product->product_name_hin }}
-                                                                    @else
-                                                                        {{ $product->product_name_en }}
-                                                                    @endif
-                                                                </a>
-                                                            </h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price">
-                                                                <span class="price"> ৳{{ $product->selling_price }} </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @include('frontend.common.special_offer')
 
                 <!-- /.sidebar-widget -->
                 <!-- =========================== SPECIAL OFFER : END ==================================== -->
@@ -79,69 +33,8 @@
                 @include('frontend.common.product_tags')
                 <!-- ==== ===== PRODUCT TAGS : END ======= ==== -->
 
-
-
-
                 <!-- ============================================== SPECIAL DEALS ============================================== -->
-
-                <div class="sidebar-widget outer-bottom-small wow fadeInUp">
-                    <h3 class="section-title">Special Deals</h3>
-                    <div class="sidebar-widget-body outer-top-xs">
-                        <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs"
-                            data-item="6">
-
-
-                            <div class="item">
-                                <div class="products special-product">
-
-                                    @foreach ($special_deals as $product)
-                                        <div class="product">
-                                            <div class="product-micro">
-                                                <div class="row product-micro-row">
-                                                    <div class="col col-xs-5 col-md-4 col-sm-2">
-                                                        <div class="product-image">
-                                                            <div class="image"> <a
-                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
-                                                                    <img src="{{ asset($product->product_thambnail) }}"
-                                                                        alt=""> </a> </div>
-                                                            <!-- /.image -->
-
-                                                        </div>
-                                                        <!-- /.product-image -->
-                                                    </div>
-                                                    <!-- /.col -->
-                                                    <div class="col col-xs-7 col-md-4 col-sm-2">
-                                                        <div class="product-info">
-                                                            <h3 class="name"><a
-                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
-                                                                    @if (session()->get('language') == 'hindi')
-                                                                        {{ $product->product_name_hin }}
-                                                                    @else
-                                                                        {{ $product->product_name_en }}
-                                                                    @endif
-                                                                </a></h3>
-                                                            <div class="rating rateit-small"></div>
-                                                            <div class="product-price"> <span class="price">
-                                                                    ৳{{ $product->selling_price }} </span> </div>
-                                                            <!-- /.product-price -->
-
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.col -->
-                                                </div>
-                                                <!-- /.product-micro-row -->
-                                            </div>
-                                            <!-- /.product-micro -->
-
-                                        </div>
-                                    @endforeach <!-- // end special deals foreach -->
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- /.sidebar-widget-body -->
-                </div>
+                @include('frontend.common.special_deals')
                 <!-- /.sidebar-widget -->
                 <!-- ============================================== SPECIAL DEALS : END ============================================== -->
                 <!-- ============================================== NEWSLETTER ============================================== -->
@@ -394,23 +287,16 @@
                             <!-- /.product-slider -->
                         </div>
                         <!-- /.tab-pane -->
-
-
-
-
                         @foreach ($categories as $category)
                             <div class="tab-pane" id="category{{ $category->id }}">
                                 <div class="product-slider">
                                     <div class="owl-carousel home-owl-carousel custom-carousel owl-theme"
                                         data-item="6">
-
                                         @php
                                             $catwiseProduct = App\Models\Product::where('category_id', $category->id)
                                                 ->orderBy('id', 'DESC')
                                                 ->get();
                                         @endphp
-
-
                                         @forelse($catwiseProduct as $product)
                                             <div class="item item-carousel">
                                                 <div class="products">
@@ -535,26 +421,29 @@
                 <!-- /.scroll-tabs -->
                 <!-- ============================================== SCROLL TABS : END ============================================== -->
                 <!-- ============================================== WIDE PRODUCTS ============================================== -->
+
                 <div class="wide-banners wow fadeInUp outer-bottom-xs">
                     <div class="row">
-                        <div class="col-md-7 col-sm-7">
-                            <div class="wide-banner cnt-strip">
-                                <div class="image">
-                                    <img class="img-responsive" src="{{ asset($banner->first_img) }}"
-                                        alt="Banner Image">
-                                </div>
-                            </div>
-                            <!-- /.wide-banner -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-md-5 col-sm-5">
+                        <div class="col-md-12">
                             <div class="wide-banner cnt-strip">
                                 <div class="image"> <img class="img-responsive"
-                                        src="{{ asset($banner->second_img) }}" alt=""> </div>
+                                        src="{{ asset($banner->third_img) }}" alt=""> </div>
+                                <div class="strip strip-text">
+                                    <div class="strip-inner">
+                                        <h2 class="text-right">New Mens Fashion<br>
+                                            <span class="shopping-needs">Save up to 40% off</span>
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div class="new-label">
+                                    <div class="text">NEW</div>
+                                </div>
+                                <!-- /.new-label -->
                             </div>
                             <!-- /.wide-banner -->
                         </div>
                         <!-- /.col -->
+
                     </div>
                     <!-- /.row -->
                 </div>
@@ -896,26 +785,24 @@
                 <!-- ============================================== WIDE PRODUCTS ============================================== -->
                 <div class="wide-banners wow fadeInUp outer-bottom-xs">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-7 col-sm-7">
                             <div class="wide-banner cnt-strip">
-                                <div class="image"> <img class="img-responsive"
-                                        src="{{ asset($banner->third_img) }}" alt=""> </div>
-                                <div class="strip strip-text">
-                                    <div class="strip-inner">
-                                        <h2 class="text-right">New Mens Fashion<br>
-                                            <span class="shopping-needs">Save up to 40% off</span>
-                                        </h2>
-                                    </div>
+                                <div class="image">
+                                    <img class="img-responsive" src="{{ asset($banner->first_img) }}"
+                                        alt="Banner Image">
                                 </div>
-                                <div class="new-label">
-                                    <div class="text">NEW</div>
-                                </div>
-                                <!-- /.new-label -->
                             </div>
                             <!-- /.wide-banner -->
                         </div>
                         <!-- /.col -->
-
+                        <div class="col-md-5 col-sm-5">
+                            <div class="wide-banner cnt-strip">
+                                <div class="image"> <img class="img-responsive"
+                                        src="{{ asset($banner->second_img) }}" alt=""> </div>
+                            </div>
+                            <!-- /.wide-banner -->
+                        </div>
+                        <!-- /.col -->
                     </div>
                     <!-- /.row -->
                 </div>

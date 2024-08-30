@@ -177,7 +177,8 @@
                     <!-- ============================================================= LOGO ============================================================= -->
                     <div class="logo">
                         <a href="{{ url('/') }}">
-                            <img src="{{ asset($setting->logo ?? '') }}" alt="logo" style="width: 200px; height: auto; margin-bottom:2px">
+                            <img src="{{ asset($setting->logo ?? '') }}" alt="logo"
+                                style="width: 200px; height: auto; margin-bottom:2px">
                         </a>
                     </div>
                     <!-- /.logo -->
@@ -356,8 +357,6 @@
                                                             <!-- /.col -->
                                                         @endforeach
                                                         <!-- // End SubCategory Foreach -->
-
-
                                                         <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
                                                             <img class="img-responsive"
                                                                 src="{{ asset($banner->nav_img) }}" alt="">
@@ -369,8 +368,6 @@
                                         </ul>
                                     </li>
                                 @endforeach <!-- // End Category Foreach -->
-
-
                                 <li> <a href="{{ route('shop.page') }}">Shop</a> </li>
 
                                 {{-- <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a>

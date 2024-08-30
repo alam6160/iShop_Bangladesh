@@ -106,7 +106,9 @@ class IndexController extends Controller
         $data['targetDate'] = TargetDate::latest()->first();
         $data['timer'] = Time::first();
         $data['banner'] = Banner::first();
+        $data['tags_en'] = Product::groupBy('product_tags_en')->select('product_tags_en')->get();
 
+        $data['tags_hin'] =Product::groupBy('product_tags_hin')->select('product_tags_hin')->get();
         // Return view with data array
         return view('frontend.index', $data);
     }
