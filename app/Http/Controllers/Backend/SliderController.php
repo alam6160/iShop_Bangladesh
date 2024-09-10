@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
- 
+
 use App\Models\Slider;
 use Carbon\Carbon;
 use Image;
 
 class SliderController extends Controller
 {
-    
+
 	public function SliderView(){
 		$sliders = Slider::latest()->get();
 		return view('backend.slider.slider_view',compact('sliders'));
@@ -21,12 +21,13 @@ class SliderController extends Controller
      public function SliderStore(Request $request){
 
     	$request->validate([
-    		 
-    		'slider_img' => 'required',
-    	],[
-    		'slider_img.required' => 'Plz Select One Image',
-    		 
-    	]);
+            'slider_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5048',
+        ],[
+            'slider_img.required' => 'Please select an image.',
+            'slider_img.image' => 'The file must be an image.',
+            'slider_img.mimes' => 'The image must be a file of type: jpeg, png, jpg, gif, svg.',
+            'slider_img.max' => 'The image must not be larger than 2MB.',
+        ]);
 
     	$image = $request->file('slider_img');
     	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
@@ -47,7 +48,7 @@ class SliderController extends Controller
 
 		return redirect()->back()->with($notification);
 
-    } // end method 
+    } // end method
 
 
 
@@ -59,7 +60,7 @@ class SliderController extends Controller
 
 
 public function SliderUpdate(Request $request){
-    	
+
     	$slider_id = $request->id;
     	$old_img = $request->old_image;
 
@@ -90,7 +91,7 @@ public function SliderUpdate(Request $request){
     	Slider::findOrFail($slider_id)->update([
 		'title' => $request->title,
 		'description' => $request->description,
-		
+
 
     	]);
 
@@ -101,8 +102,8 @@ public function SliderUpdate(Request $request){
 
 		return redirect()->route('manage-slider')->with($notification);
 
-    	} // end else 
-    } // end method 
+    	} // end else
+    } // end method
 
 
     public function SliderDelete($id){
@@ -131,7 +132,7 @@ public function SliderUpdate(Request $request){
 
 		return redirect()->back()->with($notification);
 
-    } // end method 
+    } // end method
 
 
     public function SliderActive($id){
@@ -144,7 +145,7 @@ public function SliderUpdate(Request $request){
 
 		return redirect()->back()->with($notification);
 
-    } // end method 
+    } // end method
 
 
 
@@ -152,4 +153,3 @@ public function SliderUpdate(Request $request){
 
 
 }
- 

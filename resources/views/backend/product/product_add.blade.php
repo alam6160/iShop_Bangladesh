@@ -1,6 +1,5 @@
 @extends('admin.admin_master')
 @section('admin')
-
     <div class="container-full">
         <!-- Content Header (Page header) -->
         <!-- Main content -->
@@ -89,10 +88,9 @@
                                             <div class="col-md-4">
 
                                                 <div class="form-group">
-                                                    <h5>SubSubCategory Select <span class="text-danger">*</span></h5>
+                                                    <h5>SubSubCategory Select</h5>
                                                     <div class="controls">
-                                                        <select name="subsubcategory_id" class="form-control"
-                                                            required="">
+                                                        <select name="subsubcategory_id" class="form-control">
                                                             <option value="" selected="" disabled="">Select
                                                                 SubSubCategory</option>
 
@@ -149,7 +147,7 @@
 
                                         <div class="row"> <!-- start 3RD row  -->
 
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <h5>Product Quantity <span class="text-danger">*</span></h5>
                                                     <div class="controls">
@@ -161,7 +159,19 @@
                                                     </div>
                                                 </div>
                                             </div> <!-- end col md 4 -->
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <h5>Product Buying Price <span class="text-danger">*</span></h5>
+                                                    <div class="controls">
+                                                        <input type="number" name="buying_price" class="form-control"
+                                                            required="">
+                                                        @error('buying_price')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <h5>Product Selling Price <span class="text-danger">*</span></h5>
                                                     <div class="controls">
@@ -173,12 +183,12 @@
                                                     </div>
                                                 </div>
                                             </div> <!-- end col md 4 -->
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <h5>Product Discount Price <span class="text-danger">*</span></h5>
+                                                    <h5>Product Discount Price </h5>
                                                     <div class="controls">
                                                         <input type="number" name="discount_price" class="form-control"
-                                                            required="">
+                                                            >
                                                         @error('discount_price')
                                                             <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -188,11 +198,11 @@
 
                                         </div> <!-- end 3RD row  -->
 
-                                         <!-- start 4th row  -->
+                                        <!-- start 4th row  -->
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Product Tags  <span class="text-danger">*</span></h5>
+                                                    <h5>Product Tags <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="product_tags_en" class="form-control"
                                                             value="Lorem,Ipsum,Amet" data-role="tagsinput"
@@ -205,7 +215,7 @@
                                             </div> <!-- end col md 4 -->
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Product Size  <span class="text-danger">*</span></h5>
+                                                    <h5>Product Size <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="product_size_en" class="form-control"
                                                             value="Small,Midium,Large" data-role="tagsinput"
@@ -218,7 +228,7 @@
                                             </div> <!-- end col md 4 -->
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <h5>Product Color  <span class="text-danger">*</span></h5>
+                                                    <h5>Product Color <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <input type="text" name="product_color_en"
                                                             class="form-control" value="red,Black,Amet"
@@ -316,7 +326,7 @@
                                             <div class="col-md-12">
 
                                                 <div class="form-group">
-                                                    <h5>Short Description  <span class="text-danger">*</span></h5>
+                                                    <h5>Short Description <span class="text-danger">*</span></h5>
                                                     <div class="controls">
                                                         <textarea name="short_descp_en" id="textarea" class="form-control" required placeholder="Textarea text"></textarea>
                                                     </div>
@@ -337,8 +347,8 @@
                                                 <div class="form-group">
                                                     <h5>Long Description <span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                        <textarea id="editor1" name="long_descp_en" rows="10" cols="80" required="">
-                                                         Long Description
+                                                        <textarea  placeholder="Enter Long Description" id="editor1" name="long_descp_en" rows="10" cols="80" required="">
+
                                                         </textarea>
                                                     </div>
                                                 </div>
@@ -491,7 +501,7 @@
 
                     $.each(data, function(index, file) { //loop though each file
                         if (/(\.|\/)(gif|jpe?g|png)$/i.test(file
-                            .type)) { //check supported file type
+                                .type)) { //check supported file type
                             var fRead = new FileReader(); //new filereader
                             fRead.onload = (function(file) { //trigger function on successful read
                                 return function(e) {
@@ -499,7 +509,7 @@
                                             e.target.result).width(80)
                                         .height(80); //create image element
                                     $('#preview_img').append(
-                                    img); //append image to output element
+                                        img); //append image to output element
                                 };
                             })(file);
                             fRead.readAsDataURL(file); //URL representing the file's data.

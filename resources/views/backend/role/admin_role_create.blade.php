@@ -114,10 +114,14 @@
 				<input type="checkbox" id="checkbox_3" name="category" value="1">
 				<label for="checkbox_3">Category</label>
 			</fieldset>
+            <fieldset>
+				<input type="checkbox" id="checkbox_4" name="product_add" value="1">
+				<label for="checkbox_4">Product Add</label>
+			</fieldset>
 
 			<fieldset>
-				<input type="checkbox" id="checkbox_4" name="product" value="1">
-				<label for="checkbox_4">Product</label>
+				<input type="checkbox" id="checkbox_4" name="product_view" value="1">
+				<label for="checkbox_4">Product View</label>
 			</fieldset>
 
 			<fieldset>

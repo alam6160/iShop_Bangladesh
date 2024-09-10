@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,7 +70,7 @@
             </td>
         </tr>
     </table>
-    <table width="100%" style="background:white; padding:2px;""></table>
+    <table width="100%" style="background:white; padding:2px;"></table>
     <table width="100%" style="background: #F7F7F7; padding:0 5 0 5px;" class="font">
         <tr>
             <td>
@@ -84,9 +83,11 @@
                         $div = $order->division->division_name;
                         $dis = $order->district->district_name;
                         $state = $order->state->state_name;
+                        $note = $order->notes;
                     @endphp
 
                     <strong>Address:</strong> {{ $div }},{{ $dis }}.{{ $state }} <br>
+                    <strong> Details Address:</strong> {{ $note }} <br>
                     <strong>Post Code:</strong> {{ $order->post_code }}
                 </p>
             </td>
@@ -136,8 +137,8 @@
                     <td align="center">{{ $item->color }}</td>
                     <td align="center">{{ $item->product->product_code }}</td>
                     <td align="center">{{ $item->qty }}</td>
-                    <td align="center">৳{{ $item->price }}</td>
-                    <td align="center">৳{{ $item->price * $item->qty }} </td>
+                    <td align="center">{{ $item->price }} tk</td>
+                    <td align="center">{{ $item->price * $item->qty }} tk </td>
                 </tr>
             @endforeach
 
@@ -147,8 +148,8 @@
     <table width="100%" style=" padding:0 10px 0 10px;">
         <tr>
             <td align="right">
-                <h2><span style="color: green;">Subtotal:</span>৳{{ $order->amount }}</h2>
-                <h2><span style="color: green;">Total:</span> ৳{{ $order->amount }}</h2>
+                <h2><span style="color: green;">Subtotal:</span>{{ $order->amount }} tk</h2>
+                <h2><span style="color: green;">Total:</span> {{ $order->amount }} tk</h2>
                 {{-- <h2><span style="color: green;">Full Payment PAID</h2> --}}
             </td>
         </tr>

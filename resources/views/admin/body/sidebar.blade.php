@@ -34,7 +34,8 @@
             @php
                 $brand = auth()->guard('admin')->user()->brand == 1;
                 $category = auth()->guard('admin')->user()->category == 1;
-                $product = auth()->guard('admin')->user()->product == 1;
+                $product = auth()->guard('admin')->user()->product_view == 1;
+                $products = auth()->guard('admin')->user()->product_add == 1;
                 $slider = auth()->guard('admin')->user()->slider == 1;
                 $coupons = auth()->guard('admin')->user()->coupons == 1;
                 $shipping = auth()->guard('admin')->user()->shipping == 1;
@@ -92,7 +93,7 @@
             @else
             @endif
 
-            @if ($product == true)
+            @if ($products == true)
                 <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}  ">
                     <a href="#">
                         <i data-feather="file"></i>
@@ -102,17 +103,20 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
+
                         <li class="{{ $route == 'add-product' ? 'active' : '' }}"><a
                                 href="{{ route('add-product') }}"><i class="ti-more"></i>Add Products</a></li>
 
-                        <li class="{{ $route == 'manage-product' ? 'active' : '' }}"><a
-                                href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Products</a></li>
-
+                        @if ($product == true)
+                            <li class="{{ $route == 'manage-product' ? 'active' : '' }}"><a
+                                    href="{{ route('manage-product') }}"><i class="ti-more"></i>Manage Products</a>
+                            </li>
+                        @else
+                        @endif
                     </ul>
                 </li>
             @else
             @endif
-
             @if ($slider == true)
                 <li class="treeview {{ $prefix == '/slider' ? 'active' : '' }}  ">
                     <a href="#">
@@ -212,8 +216,9 @@
 
                         <li class="{{ $route == 'seo.setting' ? 'active' : '' }}"><a
                                 href="{{ route('seo.setting') }}"><i class="ti-more"></i>Seo Setting</a></li>
-                                <li class="{{ $route == 'banner.setting' ? 'active' : '' }}"><a
-                                    href="{{ route('banner.setting') }}"><i class="ti-more"></i>Banner Image Setting</a></li>
+                        <li class="{{ $route == 'banner.setting' ? 'active' : '' }}"><a
+                                href="{{ route('banner.setting') }}"><i class="ti-more"></i>Banner Image Setting</a>
+                        </li>
                         <li class="{{ $route == 'hotdeal.time.setting' ? 'active' : '' }}"><a
                                 href="{{ route('hotdeal.time.setting') }}"><i class="ti-more"></i>Set Time For Hot
                                 Deal</a></li>

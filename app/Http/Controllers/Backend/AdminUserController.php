@@ -42,7 +42,8 @@ class AdminUserController extends Controller
 		'phone' => $request->phone,
 		'brand' => $request->brand,
 		'category' => $request->category,
-		'product' => $request->product,
+		'product_view' => $request->product_view,
+		'product_add' => $request->product_add,
 		'slider' => $request->slider,
 		'coupons' => $request->coupons,
 
@@ -92,7 +93,7 @@ class AdminUserController extends Controller
 
     	if ($request->file('profile_photo_path')) {
 
-    	
+
     	$image = $request->file('profile_photo_path');
     	$name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
     	Image::make($image)->resize(225,225)->save('upload/admin_images/'.$name_gen);
@@ -105,7 +106,8 @@ class AdminUserController extends Controller
 		'phone' => $request->phone,
 		'brand' => $request->brand,
 		'category' => $request->category,
-		'product' => $request->product,
+		'product_add' => $request->product_add,
+		'product_view' => $request->product_view,
 		'slider' => $request->slider,
 		'coupons' => $request->coupons,
 
@@ -142,7 +144,8 @@ class AdminUserController extends Controller
 		'phone' => $request->phone,
 		'brand' => $request->brand,
 		'category' => $request->category,
-		'product' => $request->product,
+		'product_add' => $request->product_add,
+		'product_view' => $request->product_view,
 		'slider' => $request->slider,
 		'coupons' => $request->coupons,
 

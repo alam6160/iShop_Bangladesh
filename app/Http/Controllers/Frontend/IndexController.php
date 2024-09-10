@@ -178,7 +178,7 @@ class IndexController extends Controller
 	}// end method
 
 	public function ProductDetails($id,$slug){
-		$product = Product::findOrFail($id);
+		 $product = Product::findOrFail($id);
 
 		$color_en = $product->product_color_en;
 		$product_color_en = explode(',', $color_en);
@@ -297,7 +297,11 @@ class IndexController extends Controller
 		$categories = Category::orderBy('category_name_en','ASC')->get();
 		$breadsubsubcat = SubSubCategory::with(['category','subcategory'])->where('id',$subsubcat_id)->get();
         $banner = Banner::first();
-		return view('frontend.product.sub_subcategory_view',compact('products','categories','breadsubsubcat','banner'));
+        $tags_en = Product::groupBy('product_tags_en')->select('product_tags_en')->get();
+
+        $tags_hin =Product::groupBy('product_tags_hin')->select('product_tags_hin')->get();
+
+		return view('frontend.product.sub_subcategory_view',compact('products','categories','breadsubsubcat','banner','tags_en','tags_hin'));
 
 	}
 

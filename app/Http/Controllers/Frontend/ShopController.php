@@ -35,7 +35,10 @@ class ShopController extends Controller
         $brands = Brand::orderBy('brand_name_en','ASC')->get();
         $categories = Category::orderBy('category_name_en','ASC')->get();
         $banner = Banner::first();
-        return view('frontend.shop.shop_page',compact('products','categories','brands','banner'));
+        $tags_en = Product::groupBy('product_tags_en')->select('product_tags_en')->get();
+
+        $tags_hin =Product::groupBy('product_tags_hin')->select('product_tags_hin')->get();
+        return view('frontend.shop.shop_page',compact('products','categories','brands','banner','tags_en','tags_hin'));
 
     } // end Method
 
