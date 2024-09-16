@@ -8,37 +8,37 @@
 <div class="sidebar-widget test-hot hot-deals wow fadeInUp outer-bottom-xs">
     <h3 class="section-title">Hot Deals</h3>
     <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
-        @foreach ($hot_deals as $product)
+        @foreach ($hot_deals as $hot_deal)
             <div class="item">
                 <div class="products">
                     <div class="hot-deal-wrapper">
                         <div class="image">
-                            <img src="{{ asset($product->product_thambnail) }}" alt="">
+                            <img src="{{ asset($hot_deal->product_thambnail) }}" alt="">
                         </div>
                         @php
-                            $amount = $product->selling_price - $product->discount_price;
-                            $discount = ($amount / $product->selling_price) * 100;
+                            $amount = $hot_deal->selling_price - $hot_deal->discount_price;
+                            $discount = ($amount / $hot_deal->selling_price) * 100;
                         @endphp
-                        @if ($product->discount_price == null)
+                        @if ($hot_deal->discount_price == null)
                             <div class="tag new"><span>new</span></div>
                         @else
                             <div class="sale-offer-tag"><span>{{ round($discount) }}%<br>off</span></div>
                         @endif
-                        <div class="timing-wrapper" id="countdown-timer-{{ $product->id }}">
+                        <div class="timing-wrapper" id="countdown-timer-{{ $hot_deal->id }}">
                             <div class="box-wrapper">
-                                <div class="date box"> <span class="key" id="days-{{ $product->id }}">0</span> <span
+                                <div class="date box"> <span class="key" id="days-{{ $hot_deal->id }}">0</span> <span
                                         class="value">DAYS</span> </div>
                             </div>
                             <div class="box-wrapper">
-                                <div class="hour box"> <span class="key" id="hours-{{ $product->id }}">0</span>
+                                <div class="hour box"> <span class="key" id="hours-{{ $hot_deal->id }}">0</span>
                                     <span class="value">HRS</span> </div>
                             </div>
                             <div class="box-wrapper">
-                                <div class="minutes box"> <span class="key" id="minutes-{{ $product->id }}">0</span>
+                                <div class="minutes box"> <span class="key" id="minutes-{{ $hot_deal->id }}">0</span>
                                     <span class="value">MINS</span> </div>
                             </div>
                             <div class="box-wrapper hidden-md">
-                                <div class="seconds box"> <span class="key" id="seconds-{{ $product->id }}">0</span>
+                                <div class="seconds box"> <span class="key" id="seconds-{{ $hot_deal->id }}">0</span>
                                     <span class="value">SEC</span> </div>
                             </div>
                         </div>
@@ -46,23 +46,23 @@
                     <div class="product-info text-left m-t-20">
                         <h3 class="name"><a href="detail.html">
                                 @if (session()->get('language') == 'hindi')
-                                    {{ $product->product_name_hin }}
+                                    {{ $hot_deal->product_name_hin }}
                                 @else
-                                    {{ $product->product_name_en }}
+                                    {{ $hot_deal->product_name_en }}
                                 @endif
                             </a></h3>
                         <div class="rating rateit-small"></div>
-                        @if ($product->discount_price == null)
-                        <div class="product-price" id="selling-price-{{ $product->id }}">
-                            <span class="price"> ৳{{ $product->selling_price }} </span>
+                        @if ($hot_deal->discount_price == null)
+                        <div class="product-price" id="selling-price-{{ $hot_deal->id }}">
+                            <span class="price"> ৳{{ $hot_deal->selling_price }} </span>
                         </div>
                     @else
-                        <div class="product-price" id="discount-price-{{ $product->id }}" style="display: none;">
-                            <span class="price"> ৳{{ $product->discount_price }} </span>
-                            <span class="price-before-discount">৳{{ $product->selling_price }}</span>
+                        <div class="product-price" id="discount-price-{{ $hot_deal->id }}" style="display: none;">
+                            <span class="price"> ৳{{ $hot_deal->discount_price }} </span>
+                            <span class="price-before-discount">৳{{ $hot_deal->selling_price }}</span>
                         </div>
-                        <div class="product-price" id="selling-price-{{ $product->id }}">
-                            <span class="price"> ৳{{ $product->selling_price }} </span>
+                        <div class="product-price" id="selling-price-{{ $hot_deal->id }}">
+                            <span class="price"> ৳{{ $hot_deal->selling_price }} </span>
                         </div>
                     @endif
                     </div>
@@ -70,10 +70,10 @@
                         <div class="action">
                             <div class="add-cart-button btn-group">
                                 <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal"
-                                    data-target="#exampleModal" id="{{ $product->id }}"
+                                    data-target="#exampleModal" id="{{ $hot_deal->id }}"
                                     onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
                                 <button class="btn btn-primary cart-btn" type="button" data-toggle="modal"
-                                    title="Add Cart" data-target="#exampleModal" id="{{ $product->id }}"
+                                    title="Add Cart" data-target="#exampleModal" id="{{ $hot_deal->id }}"
                                     onclick="productView(this.id)">Add to cart</button>
                             </div>
                         </div>
@@ -105,11 +105,11 @@
             return;
         }
 
-        @foreach ($hot_deals as $product)
+        @foreach ($hot_deals as $hot_deal)
             (function() {
-                const countdownTimer = document.getElementById('countdown-timer-{{ $product->id }}');
-                const sellingPrice = document.getElementById('selling-price-{{ $product->id }}');
-                const discountPrice = document.getElementById('discount-price-{{ $product->id }}');
+                const countdownTimer = document.getElementById('countdown-timer-{{ $hot_deal->id }}');
+                const sellingPrice = document.getElementById('selling-price-{{ $hot_deal->id }}');
+                const discountPrice = document.getElementById('discount-price-{{ $hot_deal->id }}');
 
                 const x = setInterval(function() {
                     const now = new Date().getTime();
@@ -132,10 +132,10 @@
                     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                    document.getElementById("days-{{ $product->id }}").innerHTML = days;
-                    document.getElementById("hours-{{ $product->id }}").innerHTML = hours;
-                    document.getElementById("minutes-{{ $product->id }}").innerHTML = minutes;
-                    document.getElementById("seconds-{{ $product->id }}").innerHTML = seconds;
+                    document.getElementById("days-{{ $hot_deal->id }}").innerHTML = days;
+                    document.getElementById("hours-{{ $hot_deal->id }}").innerHTML = hours;
+                    document.getElementById("minutes-{{ $hot_deal->id }}").innerHTML = minutes;
+                    document.getElementById("seconds-{{ $hot_deal->id }}").innerHTML = seconds;
 
                     if (distance < 0) {
                         clearInterval(x);

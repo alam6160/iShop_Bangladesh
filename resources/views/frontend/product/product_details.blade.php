@@ -9,8 +9,54 @@
     .checked {
         color: orange;
     }
-</style>
 
+    .breadcrumb {
+    padding: 10px 0;
+    background: #f5f5f5;
+}
+
+.breadcrumb-inner {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.breadcrumb ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.breadcrumb ul li {
+    display: inline;
+    font-size: 14px;
+}
+
+.breadcrumb ul li a {
+    color: #666;
+    text-decoration: none;
+}
+
+.breadcrumb ul li a:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+.breadcrumb ul li.active {
+    color: red;
+}
+
+.breadcrumb ul li::after {
+    content: " / ";
+    color: #999;
+    padding: 0 5px;
+}
+
+.breadcrumb ul li:last-child::after {
+    content: ""; /* Removes the slash after the last item */
+}
+
+</style>
 
 <!-- ===== ======== HEADER : END ============================================== -->
 <div class="breadcrumb">
@@ -24,32 +70,37 @@
         </div><!-- /.breadcrumb-inner -->
     </div><!-- /.container -->
 </div><!-- /.breadcrumb -->
+
 <div class="body-content outer-top-xs">
     <div class='container'>
         <div class='row single-product'>
             <div class='col-md-3 sidebar'>
+
                 <div class="sidebar-module-container">
+
+
                     {{-- <div class="home-banner outer-top-n">
                         <img src="{{ asset('frontend/assets/images/banners/LHS-banner.jpg') }}" alt="Image">
                     </div> --}}
                     <!-- ====== === HOT DEALS ==== ==== -->
+
                     @include('frontend.common.hot_deals')
+
                     <!-- ===== ===== HOT DEALS: END ====== ====== --><div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">Special Offer</h3>
                     <div class="sidebar-widget-body outer-top-xs">
                         <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs" data-item="6">
                             <div class="item">
                                 <div class="products special-product">
-
-                                    @foreach ($special_offer as $product)
+                                    @foreach ($special_offer as $special_offers)
                                         <div class="product">
                                             <div class="product-micro">
                                                 <div class="row product-micro-row d-flex align-items-center" style="margin-bottom: 15px;"> <!-- Flexbox for alignment -->
                                                     <div class="col-xs-4 col-md-4 col-sm-4">
                                                         <div class="product-image">
                                                             <div class="image">
-                                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
-                                                                    <img src="{{ asset($product->product_thambnail) }}" alt="" class="img-fluid">
+                                                                <a href="{{ url('product/details/' . $special_offers->id . '/' . $special_offers->product_slug_en) }}">
+                                                                    <img src="{{ asset($special_offers->product_thambnail) }}" alt="" class="img-fluid">
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -57,17 +108,17 @@
                                                     <div class="col-xs-8 col-md-8 col-sm-8">
                                                         <div class="product-info">
                                                             <h3 class="name">
-                                                                <a href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                                <a href="{{ url('product/details/' . $special_offers->id . '/' . $special_offers->product_slug_en) }}">
                                                                     @if (session()->get('language') == 'hindi')
-                                                                        {{ $product->product_name_hin }}
+                                                                        {{ $special_offers->product_name_hin }}
                                                                     @else
-                                                                        {{ $product->product_name_en }}
+                                                                        {{ $special_offers->product_name_en }}
                                                                     @endif
                                                                 </a>
                                                             </h3>
                                                             <div class="rating rateit-small"></div>
                                                             <div class="product-price">
-                                                                <span class="price"> ৳{{ $product->selling_price }} </span>
+                                                                <span class="price"> ৳{{ $special_offers->selling_price }} </span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -75,12 +126,12 @@
                                             </div>
                                         </div>
                                     @endforeach
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="sidebar-widget outer-bottom-small wow fadeInUp">
                     <h3 class="section-title">Special Deals</h3>
                     <div class="sidebar-widget-body outer-top-xs">
@@ -91,15 +142,15 @@
                             <div class="item">
                                 <div class="products special-product">
 
-                                    @foreach ($special_deals as $product)
+                                    @foreach ($special_deals as $special_deal)
                                         <div class="product">
                                             <div class="product-micro">
                                                 <div class="row product-micro-row">
                                                     <div class="col col-xs-5 col-md-4 col-sm-2">
                                                         <div class="product-image">
                                                             <div class="image"> <a
-                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
-                                                                    <img src="{{ asset($product->product_thambnail) }}"
+                                                                    href="{{ url('product/details/' . $special_deal->id . '/' . $special_deal->product_slug_en) }}">
+                                                                    <img src="{{ asset($special_deal->product_thambnail) }}"
                                                                         alt=""> </a> </div>
                                                             <!-- /.image -->
 
@@ -110,16 +161,16 @@
                                                     <div class="col col-xs-7 col-md-4 col-sm-2">
                                                         <div class="product-info">
                                                             <h3 class="name"><a
-                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug_en) }}">
+                                                                    href="{{ url('product/details/' . $special_deal->id . '/' . $special_deal->product_slug_en) }}">
                                                                     @if (session()->get('language') == 'hindi')
-                                                                        {{ $product->product_name_hin }}
+                                                                        {{ $special_deal->product_name_hin }}
                                                                     @else
-                                                                        {{ $product->product_name_en }}
+                                                                        {{ $special_deal->product_name_en }}
                                                                     @endif
                                                                 </a></h3>
                                                             <div class="rating rateit-small"></div>
                                                             <div class="product-price"> <span class="price">
-                                                                    ৳{{ $product->selling_price }} </span> </div>
+                                                                    ৳{{ $special_deal->selling_price }} </span> </div>
                                                             <!-- /.product-price -->
 
                                                         </div>
@@ -193,20 +244,15 @@
                     </div> --}}
 
                     <!-- ===== ========== Testimonials: END ======== =============== -->
-
-
-
                 </div>
             </div><!-- /.sidebar -->
+
             <div class='col-md-9'>
                 <div class="detail-block">
                     <div class="row  wow fadeInUp">
-
                         <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
                             <div class="product-item-holder size-big single-product-gallery small-gallery">
-
                                 <div id="owl-single-product">
-
                                     @foreach ($multiImag as $img)
                                         <div class="single-product-gallery-item" id="slide{{ $img->id }}">
                                             <a data-lightbox="image-1" data-title="Gallery"
@@ -218,12 +264,8 @@
                                         </div><!-- /.single-product-gallery-item -->
                                     @endforeach
                                 </div><!-- /.single-product-slider -->
-
-
                                 <div class="single-product-gallery-thumbs gallery-thumbs">
-
                                     <div id="owl-single-product-thumbnails">
-
                                         @foreach ($multiImag as $img)
                                             <div class="item">
                                                 <a class="horizontal-thumb active" data-target="#owl-single-product"
@@ -288,10 +330,7 @@
                                                 <span class="fa fa-star checked"></span>
                                             @endif
 
-
                                         </div>
-
-
 
                                         <div class="col-sm-8">
                                             <div class="reviews">
@@ -327,8 +366,6 @@
 
                                 <div class="price-container info-container m-t-20">
                                     <div class="row">
-
-
                                         <div class="col-sm-6">
                                             <div class="price-box">
                                                 @if ($product->discount_price == null)
@@ -399,7 +436,6 @@
                                     <div class="col-sm-6">
 
                                         <div class="form-group">
-
                                             <label class="info-title control-label">Choose Color <span> </span></label>
                                             <select class="form-control unicase-form-control selectpicker"
                                                 style="display: none;" id="color">
@@ -409,7 +445,6 @@
                                                     </option>
                                                 @endforeach
                                             </select>
-
                                         </div> <!-- // end form group -->
 
                                     </div> <!-- // end col 6 -->
@@ -438,16 +473,7 @@
 
                                 </div><!-- /.row -->
 
-
-
                                 <!--     /// End Add Product Color And Product Size ///// -->
-
-
-
-
-
-
-
 
                                 <div class="quantity-container info-container">
                                     <div class="row">
@@ -475,13 +501,25 @@
                                             min="1">
 
                                         <div class="col-sm-7">
-                                            <a href="{{ route('checkout.page', ['id' => $product->id]) }}"
+                                            {{-- <a href="{{ route('checkout.page', ['id' => $product->id]) }}"
                                                 class="btn btn-warning">
                                                 <i class="fa fa-shopping-cart inner-right-vs"></i> Buy Now
-                                            </a>
+                                            </a> --}}
+
+                                            <form action="{{ route('checkout.page') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="hidden" name="qty" id="qtyInput" value="1">
+                                                <input type="hidden" name="color" id="colorInput">
+                                                <input type="hidden" name="size" id="sizeInput">
+                                                <button type="submit" class="btn btn-warning">
+                                                    <i class="fa fa-shopping-cart inner-right-vs"></i> Buy Now
+                                                </button>
+                                            </form>
                                             <button type="submit" onclick="addToCart()" class="btn btn-primary"><i
                                                     class="fa fa-shopping-cart inner-right-vs"></i> Add to
-                                                Cart</button>
+                                                    Cart
+                                            </button>
                                         </div>
 
 
@@ -705,7 +743,6 @@
 
                                     </div><!-- /.product-tab -->
                                 </div><!-- /.tab-pane -->
-
                             </div><!-- /.tab-content -->
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -819,6 +856,33 @@
                     input.val(newValue);
                 }
             });
-        });
+
+
+        $('form').on('submit', function(event) {
+        // Capture selected color, size, and quantity
+        const selectedColor = $('#color').val();
+        const selectedSize = $('#size').val();
+        const selectedQty = $('#qty').val();
+        var productId = $('#product_id').val();
+        var productName = $('#pname').text();
+
+        // Debugging output
+        console.log("Selected Color:", selectedColor);
+        console.log("Selected Size:", selectedSize);
+        console.log("Selected Qty:", selectedQty);
+        console.log("Product ID:", productId);
+        console.log("Product Name:", productName);
+
+        // Update the hidden form fields with selected values
+        $('#colorInput').val(selectedColor);
+        $('#sizeInput').val(selectedSize);
+        $('#qtyInput').val(selectedQty);
+        $('#pname').val(productName);
+       });
+
+});
+
+
+
     </script>
 @endsection

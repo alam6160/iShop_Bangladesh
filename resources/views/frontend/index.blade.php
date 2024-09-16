@@ -429,11 +429,11 @@
                                 <div class="image"> <img class="img-responsive"
                                         src="{{ asset($banner->third_img) }}" alt=""> </div>
                                 <div class="strip strip-text">
-                                    <div class="strip-inner">
+                                    {{-- <div class="strip-inner">
                                         <h2 class="text-right">New Mens Fashion<br>
                                             <span class="shopping-needs">Save up to 40% off</span>
                                         </h2>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="new-label">
                                     <div class="text">NEW</div>

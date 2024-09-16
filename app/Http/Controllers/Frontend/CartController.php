@@ -214,48 +214,68 @@ class CartController extends Controller
 
 // }
 
-public function CheckoutCreateWithoutCart($productId = null)
+// public function CheckoutCreateWithoutCart($productId = null)
+// {
+//     // if (Auth::check()) {
+//         // Check if the request is for direct purchase
+//         if ($productId) {
+//          return $product = Product::findOrFail($productId);
+
+//           $carts = collect([
+//                 [
+//                     'id' => $product->id,
+//                     'name' => $product->product_name_en,
+//                     'qty' => 1,
+//                     'price' => $product->discount_price,
+//                 ]
+//             ]);
+
+//             $cartQty = 1;
+//            $cartTotal = $product->discount_price;
+
+//         } elseif (Cart::total() > 0) { // Regular cart checkout
+//             $carts = Cart::content();
+//             $cartQty = Cart::count();
+//             $cartTotal = Cart::total();
+//         } else {
+//             $notification = [
+//                 'message' => 'Shopping At least One Product',
+//                 'alert-type' => 'error'
+//             ];
+//             return redirect()->to('/')->with($notification);
+//         }
+
+//         $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+//         return view('frontend.checkout.checkout_page', compact('carts', 'cartQty', 'cartTotal', 'divisions','product'));
+
+//     // } else {
+//         $notification = [
+//             'message' => 'You Need to Login First',
+//             'alert-type' => 'error'
+//         ];
+//         return redirect()->route('login')->with($notification);
+//     // }
+// }
+
+public function CheckoutCreateWithoutCart(Request $request)
 {
-    // if (Auth::check()) {
-        // Check if the request is for direct purchase
-        if ($productId) {
-           $product = Product::findOrFail($productId);
+    // return $request->all();
+    // Retrieve the passed data
+    $product_id = $request->input('product_id');
+    $quantity = $request->input('qty');
+    $color = $request->input('color');
+    $size = $request->input('size');
 
-          $carts = collect([
-                [
-                    'id' => $product->id,
-                    'name' => $product->product_name_en,
-                    'qty' => 1,
-                    'price' => $product->discount_price,
-                ]
-            ]);
-
-            $cartQty = 1;
-           $cartTotal = $product->discount_price;
-
-        } elseif (Cart::total() > 0) { // Regular cart checkout
-            $carts = Cart::content();
-            $cartQty = Cart::count();
-            $cartTotal = Cart::total();
-        } else {
-            $notification = [
-                'message' => 'Shopping At least One Product',
-                'alert-type' => 'error'
-            ];
-            return redirect()->to('/')->with($notification);
-        }
-
-        $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
-        return view('frontend.checkout.checkout_page', compact('carts', 'cartQty', 'cartTotal', 'divisions','product'));
-
-    // } else {
-        $notification = [
-            'message' => 'You Need to Login First',
-            'alert-type' => 'error'
-        ];
-        return redirect()->route('login')->with($notification);
-    // }
+    // Retrieve product details from the database
+    $product = Product::findOrFail($product_id);
+    $divisions = ShipDivision::orderBy('division_name', 'ASC')->get();
+    $notification = [
+        'message' => 'You Need to Login First',
+        'alert-type' => 'error'
+    ];
+    return view('frontend.checkout.checkout_page', compact('product', 'quantity', 'color', 'size','divisions'));
 }
+
 
 
 

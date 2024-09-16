@@ -102,9 +102,9 @@
                                                 </div>
                                             </div> <!-- // end form group -->
                                             <div class="form-group">
-                                                <h5><b>State Select</b> <span class="text-danger">*</span></h5>
+                                                <h5><b>State Select</b> </h5>
                                                 <div class="controls">
-                                                    <select name="state_id" class="form-control" required="">
+                                                    <select name="state_id" class="form-control" >
                                                         <option value="" selected="" disabled="">Select
                                                             State</option>
                                                     </select>
@@ -116,7 +116,7 @@
                                             <div class="form-group">
                                                 <label class="info-title" for="exampleInputEmail1">Details Address
                                                 </label>
-                                                <textarea class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"></textarea>
+                                                <textarea class="form-control" cols="30" rows="5" placeholder="Address" name="notes"></textarea>
                                             </div> <!-- // end form group  -->
                                         </div>
                                         <!-- already-registered-login -->
@@ -165,23 +165,29 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+                                    <h4 class="unicase-checkout-title">Product Details</h4>
                                 </div>
+                                {{-- @dd($carts); --}}
                                 <div class="">
                                     <ul class="nav nav-checkout-progress list-unstyled">
                                         @foreach ($carts as $item)
-                                            <li>
+                                            <li style="font-size: 18px;">
                                                 <strong>Image: </strong>
                                                 <img src="{{ asset($item->options->image) }}"
-                                                    style="height: 50px; width: 50px;">
+                                                    style="height: 100px; width: 100px;">
                                             </li>
 
-                                            <li>
-                                                <strong>Qty: </strong>
-                                                ({{ $item->qty }})
+                                            <li style="font-size: 18px;">
+                                                <strong>Name: </strong>
+                                                {{ $item->name }}
+                                                <br>
+
+                                                <strong>Qty:({{ $item->qty }}) </strong>
+                                            </li>
+                                            <li style="font-size: 18px;">
                                                 <strong>Color: </strong>
                                                 {{ $item->options->color }}
-
+                                                <br>
                                                 <strong>Size: </strong>
                                                 {{ $item->options->size }}
                                             </li>
@@ -189,23 +195,23 @@
                                         <hr>
                                         <li>
                                             @if (Session::has('coupon'))
-                                                <strong>SubTotal: </strong> ৳{{ $cartTotal }}
+                                                <strong style="font-size: 18px;">SubTotal: </strong> ৳{{ $cartTotal }}
                                                 <hr>
-                                                <strong>Coupon Name : </strong>
+                                                <strong style="font-size: 18px;">Coupon Name : </strong>
                                                 {{ session()->get('coupon')['coupon_name'] }}
                                                 ( {{ session()->get('coupon')['coupon_discount'] }} % )
                                                 <hr>
-                                                <strong>Coupon Discount : </strong>
+                                                <strong style="font-size: 18px;">Coupon Discount : </strong>
                                                 ৳{{ session()->get('coupon')['discount_amount'] }}
                                                 <hr>
-                                                <strong>Grand Total : </strong>
+                                                <strong style="font-size: 18px;">Grand Total : </strong>
                                                 ৳{{ session()->get('coupon')['total_amount'] }}
                                                 <hr>
                                             @else
-                                                <strong>SubTotal: </strong> ৳{{ $cartTotal }}
+                                                <strong style="font-size: 18px;">SubTotal: ৳{{ $cartTotal }} </strong>
                                                 <hr>
 
-                                                <strong>Grand Total : </strong> ৳{{ $cartTotal }}
+                                                <strong style="font-size: 18px;">Grand Total :  ৳{{ $cartTotal }}</strong>
                                                 <hr>
                                             @endif
                                         </li>

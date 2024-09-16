@@ -944,10 +944,10 @@
                                 ? `${value.product.selling_price}`
                                 :
                                 `${value.product.discount_price} <span>
-                                        <del>
-                                        ${value.product.selling_price}
-                                        </del>
-                                        </span>`
+                                            <del>
+                                            ${value.product.selling_price}
+                                            </del>
+                                            </span>`
                             }
                             </div>
 

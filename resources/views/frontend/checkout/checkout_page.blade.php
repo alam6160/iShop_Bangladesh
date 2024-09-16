@@ -25,7 +25,6 @@
                     <div class="panel-group checkout-steps" id="accordion">
                         <!-- checkout-step-01  -->
                         <div class="panel panel-default checkout-step-01">
-
                             <!-- panel-heading -->
 
                             <!-- panel-heading -->
@@ -43,10 +42,8 @@
                                             <form class="register-form" action="{{ route('checkout.store') }}"
                                                 method="POST">
                                                 @csrf
-
-
                                                 <div class="form-group">
-                                                    <label class="info-title" for="exampleInputEmail1"><b>Shipping
+                                                    <label class="info-title" for="exampleInputEmail1"><b>Your
                                                             Name</b> <span>*</span></label>
                                                     <input type="text" name="shipping_name"
                                                         class="form-control unicase-form-control text-input"
@@ -73,23 +70,16 @@
 
                                                 <div class="form-group">
                                                     <label class="info-title" for="exampleInputEmail1"><b>Post Code </b>
-                                                        <span>*</span></label>
+                                                    </label>
                                                     <input type="text" name="post_code"
                                                         class="form-control unicase-form-control text-input"
-                                                        id="exampleInputEmail1" placeholder="Post Code" required="">
+                                                        id="exampleInputEmail1" placeholder="Post Code">
                                                 </div> <!-- // end form group  -->
-
-
-                                        </div>
-                                        <!-- guest-login -->
-
-
-
-                                        <!-- already-registered-login -->
-                                        <div class="col-md-6 col-sm-6 already-registered-login">
-
-
-                                            <div class="form-group">
+                                              </div>
+                                               <!-- guest-login -->
+                                              <!-- already-registered-login -->
+                                               <div class="col-md-6 col-sm-6 already-registered-login">
+                                              <div class="form-group">
                                                 <h5><b>Division Select </b> <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <select name="division_id" class="form-control" required="">
@@ -104,10 +94,10 @@
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-                                            </div> <!-- // end form group -->
+                                               </div> <!-- // end form group -->
 
 
-                                            <div class="form-group">
+                                              <div class="form-group">
                                                 <h5><b>District Select</b> <span class="text-danger">*</span></h5>
                                                 <div class="controls">
                                                     <select name="district_id" class="form-control" required="">
@@ -119,13 +109,13 @@
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-                                            </div> <!-- // end form group -->
+                                              </div> <!-- // end form group -->
 
 
-                                            <div class="form-group">
-                                                <h5><b>State Select</b> <span class="text-danger">*</span></h5>
+                                              <div class="form-group">
+                                                <h5><b>State Select</b> </h5>
                                                 <div class="controls">
-                                                    <select name="state_id" class="form-control" required="">
+                                                    <select name="state_id" class="form-control">
                                                         <option value="" selected="" disabled="">Select
                                                             State</option>
 
@@ -134,23 +124,15 @@
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>
-                                            </div> <!-- // end form group -->
+                                              </div> <!-- // end form group -->
 
-
-                                            <div class="form-group">
+                                              <div class="form-group">
                                                 <label class="info-title" for="exampleInputEmail1">Details Address
-                                                    <span>*</span></label>
-                                                <textarea class="form-control" cols="30" rows="5" placeholder="Notes" name="notes"></textarea>
-                                            </div> <!-- // end form group  -->
+                                                </label>
+                                                <textarea class="form-control" cols="30" rows="5" placeholder="Address" name="notes"></textarea>
+                                              </div> <!-- // end form group  -->
 
-
-
-
-
-
-
-
-                                        </div>
+                                            </div>
                                         <!-- already-registered-login -->
 
                                     </div>
@@ -170,64 +152,48 @@
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="unicase-checkout-title">Your Checkout Progress</h4>
+                                    <h4 class="unicase-checkout-title">Products Details</h4>
                                 </div>
                                 <div class="">
                                     <ul class="nav nav-checkout-progress list-unstyled">
-                                        <li>
+                                        <li style="font-size: 18px;">
                                             <strong>Image: </strong>
                                             <img src="{{ asset($product->product_thambnail ?? '') }}"
-                                                style="height: 80px; width: 80px;">
+                                                style="height: 150px; width: 150px;">
                                         </li>
                                         <br>
-                                        <li>
+
+                                        <li style="font-size: 18px;">
                                             <strong>Name: </strong>
                                             {{ $product->product_name_en }}
                                             <br>
-                                            <strong>Qty: {{ $cartQty }} </strong>
+
+                                            <strong>Qty: {{ $quantity }} </strong>
                                         </li>
-                                        <li>
+                                        <li style="font-size: 18px;">
                                             <strong>Color: </strong>
-                                            {{ $product->product_color_en }}
+                                            {{ $color }}
                                             <br>
                                             <strong>Size: </strong>
-                                            {{ $product->product_size_en }}
+                                            {{ $size }}
                                         </li>
-                                        <li>
-                                            <strong>price: </strong>
-                                            ৳ {{ $cartTotal }}
+                                        <input type="hidden" name="qty" value="{{ $quantity }}">
+                                        <input type="hidden" name="color" value="{{ $color }}">
+                                        <input type="hidden" name="size" value="{{ $size }}">
+                                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                        @php
+                                            $quantity = $quantity ?? 1; // Ensure $quantity is set, default to 1 if not
+                                            $price =
+                                                isset($product->discount_price) && $product->discount_price > 0
+                                                    ? $product->discount_price * $quantity
+                                                    : $product->selling_price * $quantity;
+                                        @endphp
+                                        <li style="font-size: 18px;">
+                                            <strong> Total Price: </strong>
+                                            ৳{{ number_format($price, 2) }}
                                         </li>
-
+                                        <input type="hidden" name="total_price" value="{{ $price }}">
                                         <hr>
-                                        {{-- <li>
-		 	@if (Session::has('coupon'))
-
-<strong>SubTotal: </strong> ${{ $cartTotal }} <hr>
-
-<strong>Coupon Name : </strong> {{ session()->get('coupon')['coupon_name'] }}
-( {{ session()->get('coupon')['coupon_discount'] }} % )
- <hr>
-
- <strong>Coupon Discount : </strong> ${{ session()->get('coupon')['discount_amount'] }}
- <hr>
-
-  <strong>Grand Total : </strong> ${{ session()->get('coupon')['total_amount'] }}
- <hr>
-
-
-		 	@else
-
-<strong>SubTotal: </strong> ${{ $cartTotal }} <hr>
-
-<strong>Grand Total : </strong> ${{ $cartTotal }} <hr>
-
-
-		 	@endif
-
-		 </li> --}}
-
-
-
                                     </ul>
                                 </div>
                             </div>
@@ -235,18 +201,16 @@
                     </div>
                     <!-- checkout-progress-sidebar -->
                 </div>
-
-
                 <div class="col-md-4">
                     <!-- checkout-progress-sidebar -->
                     <div class="checkout-progress-sidebar ">
                         <div class="panel-group">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="unicase-checkout-title">Select Payment Method</h4>
+                                    <h4 class="unicase-checkout-title">Payment Method</h4>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <label for="">Stripe</label>
                                         <input type="radio" name="payment_method" value="stripe">
                                         <img src="{{ asset('frontend/assets/images/payments/4.png') }}">
@@ -256,12 +220,13 @@
                                         <label for="">Card</label>
                                         <input type="radio" name="payment_method" value="card">
                                         <img src="{{ asset('frontend/assets/images/payments/3.png') }}">
-                                    </div> <!-- end col md 4 -->
+                                    </div> <!-- end col md 4 --> --}}
 
-                                    <div class="col-md-4">
-                                        <label for="">Cash</label>
-                                        <input type="radio" name="payment_method" value="cash">
-                                        <img src="{{ asset('frontend/assets/images/payments/6.png') }}">
+                                    <div class="col-md-6">
+                                        <label for="">CASH ON DELIVERY</label>
+                                        <input type="radio" name="payment_method" value="cash" checked>
+                                        <img src="{{ asset('frontend/assets/images/payments/cash_on.png') }}"
+                                            style="width: 200px; height: 200px;">
                                     </div> <!-- end col md 4 -->
                                 </div> <!-- // end row  -->
                                 <hr>
@@ -273,19 +238,14 @@
                     <!-- checkout-progress-sidebar -->
                 </div>
 
-                </form>
+            </form>
             </div><!-- /.row -->
         </div><!-- /.checkout-box -->
         <!-- === ===== BRANDS CAROUSEL ==== ======== -->
 
-
-
         <!-- ===== == BRANDS CAROUSEL : END === === -->
     </div><!-- /.container -->
 </div><!-- /.body-content -->
-
-
-
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -323,7 +283,7 @@
                         $.each(data, function(key, value) {
                             $('select[name="state_id"]').append('<option value="' +
                                 value.id + '">' + value.state_name + '</option>'
-                                );
+                            );
                         });
                     },
                 });
@@ -331,8 +291,6 @@
                 alert('danger');
             }
         });
-
-
     });
 </script>
 @endsection

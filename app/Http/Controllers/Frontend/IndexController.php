@@ -178,7 +178,7 @@ class IndexController extends Controller
 	}// end method
 
 	public function ProductDetails($id,$slug){
-		 $product = Product::findOrFail($id);
+		$product = Product::findOrFail($id);
 
 		$color_en = $product->product_color_en;
 		$product_color_en = explode(',', $color_en);

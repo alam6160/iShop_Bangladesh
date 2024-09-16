@@ -21,6 +21,7 @@ use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Backend\TargetDateController;
 use App\Http\Controllers\Backend\BannerImgController;
 use App\Http\Controllers\Backend\TimerController;
+use App\Http\Controllers\Backend\AdminDashboardController;
 
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\LanguageController;
@@ -60,9 +61,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['admin:admin']], function ()
 Route::middleware(['auth:admin'])->group(function () {
 
 
-    Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
-        return view('admin.index');
-    })->name('dashboard')->middleware('auth:admin');
+    // Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
+    //     return view('admin.index');
+    // })->name('dashboard')->middleware('auth:admin');
+    Route::middleware(['auth:sanctum,admin', 'verified', 'auth:admin'])->get('/admin/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     // Admin All Routes
 
@@ -456,6 +458,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
 
     Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
+    Route::post('/buy/order', [CashController::class, 'DirectBuyOrder'])->name('cash.order.direct.buy');
 
 
     Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
@@ -527,7 +530,7 @@ Route::get('/blog/category/post/{category_id}', [HomeBlogController::class, 'Hom
 
 Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('review.store');
 
-Route::get('/checkout/page/{id}', [CartController::class, 'CheckoutCreateWithoutCart'])->name('checkout.page');
+Route::post('/checkout/page', [CartController::class, 'CheckoutCreateWithoutCart'])->name('checkout.page');
 
 
 /// Product Search Route
